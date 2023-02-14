@@ -1,5 +1,6 @@
 import React from "react";
-import RulesLogin from "../../Commom/RulesLogin";
+import RulesLogin from "../.././Components/Commom/RulesLogin";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   return (
@@ -8,9 +9,11 @@ const ForgotPassword = () => {
         <div className="flex gap-40 py-5">
           <p className="text-xl font-bold text-white pl-4">NIMO TV</p>
           <div className="flex gap-4">
-            <a href="">
-              <i className="fa-solid fa-arrow-left mt-2 hover:text-blue-500"></i>
-            </a>
+            <Link to="/Login">
+              <a href="">
+                <i className="fa-solid fa-arrow-left mt-2 hover:text-blue-500"></i>
+              </a>
+            </Link>
 
             <p className="font-bold text-lg">Quên mật khẩu</p>
           </div>

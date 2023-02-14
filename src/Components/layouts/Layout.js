@@ -1,6 +1,6 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Routers from "../../../routers/Routers";
+import Routers from "../../routers/Routers";
 
 const Layout = () => {
   return (
