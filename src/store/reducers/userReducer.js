@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  username: null,
+  user: null,
   error: null,
   isAuthenticated: false,
 };
@@ -18,14 +18,14 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         isAuthenticated: false,
-        username: null,
+        user: null,
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         loading: false,
         isAuthenticated: true,
-        username: "action.payload",
+        user: action.payload,
         error: null,
       };
     case LOGIN_FAILURE:
@@ -33,7 +33,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         isAuthenticated: false,
-        username: null,
+        user: null,
         error: action.payload,
       };
     default:

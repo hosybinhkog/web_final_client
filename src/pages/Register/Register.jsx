@@ -44,7 +44,7 @@ const Register = () => {
               <input
                 className="w-full rounded-md bg-gray-100 text-gray-500"
                 type="password"
-                placeholder="Xác nhận mật khẩu"
+                placeholder="Xác nhận mật khẩu  "
               />
             </div>
             <span className="text-gray-400 py-4 font-light text-sm">

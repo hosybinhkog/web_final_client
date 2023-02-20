@@ -3,8 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <div className="h-48 w-screen bg-black text-white border border-white">
-        <div className="flex justify-center gap-6 mt-6 font-bold text-2xl">
+      <div className="h-48 w-screen bg-gray-800 text-white">
+        <div className="flex justify-center gap-6 font-bold text-2xl">
           <div>
             <a href="">
               <i className="fa-brands fa-square-facebook hover:text-gray-400"></i>
