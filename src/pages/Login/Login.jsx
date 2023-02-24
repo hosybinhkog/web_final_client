@@ -1,22 +1,22 @@
-import React from "react";
-import { useState } from "react";
-import RulesLogin from "../../Components/Commom/RulesLogin";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react'
+import RulesLogin from '../../Components/Commom/RulesLogin'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
-    if (username === "admin" && password === "password") {
-      window.location.href = "/";
+    if (username === 'admin' && password === 'password') {
+      window.location.href = '/'
     } else {
-      setError("Tên đăng nhập hoặc mật khẩu không đúng");
+      setError('Tên đăng nhập hoặc mật khẩu không đúng')
     }
-  };
+  }
 
   // Api Login
   // const handleSubmit = async (event) => {
@@ -88,15 +88,16 @@ const Login = () => {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="w-full mt-6 bg-sky-500 rounded-md h-8 hover:bg-sky-300">
+              className="w-full mt-6 bg-sky-500 rounded-md h-8 hover:bg-sky-300"
+            >
               Đăng nhâp
             </button>
           </div>
-          <RulesLogin title={"Đăng nhập"} />
+          <RulesLogin title={'Đăng nhập'} />
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import ButtonSubmit from "../Commom/ButtonSubmit";
-import { login } from "../../store/actions/userActions";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import ButtonSubmit from '../Commom/ButtonSubmit'
+import { login } from '../../store/actions/userActions'
 
 const Header = () => {
   // const dispatch = useDispatch();
-  const username = useSelector((state) => state.username);
+  const username = useSelector((state) => state.username)
 
   // const handleLogin = (username, password) => {
   //   dispatch(login(username, password));
@@ -81,17 +81,17 @@ const Header = () => {
                   <p>Hello {username}</p>
                   <div>
                     <Link to="/Login">
-                      <ButtonSubmit titleButton={"Thoát"} />
+                      <ButtonSubmit titleButton={'Thoát'} />
                     </Link>
                   </div>
                 </div>
               ) : (
                 <div className="flex gap-4 my-3 text-white">
                   <Link to="/Login">
-                    <ButtonSubmit titleButton={"Đăng nhập"} />
+                    <ButtonSubmit titleButton={'Đăng nhập'} />
                   </Link>
                   <Link to="/Register">
-                    <ButtonSubmit titleButton={"Đăng ký"} />
+                    <ButtonSubmit titleButton={'Đăng ký'} />
                   </Link>
                 </div>
               )}
@@ -100,7 +100,7 @@ const Header = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

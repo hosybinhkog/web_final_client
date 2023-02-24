@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Rank = () => {
   return (
@@ -91,7 +91,7 @@ const Rank = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Rank;
+export default Rank

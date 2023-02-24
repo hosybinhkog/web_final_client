@@ -1,6 +1,6 @@
-import React from "react";
-import RulesLogin from "../.././Components/Commom/RulesLogin";
-import { Link } from "react-router-dom";
+import React from 'react'
+import RulesLogin from '../.././Components/Commom/RulesLogin'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
   return (
@@ -56,16 +56,17 @@ const Register = () => {
             <Link to="/Login">
               <button
                 type="submit"
-                className="w-full mt-2 bg-sky-500 rounded-md h-8 hover:bg-sky-300">
+                className="w-full mt-2 bg-sky-500 rounded-md h-8 hover:bg-sky-300"
+              >
                 Đăng ký
               </button>
             </Link>
           </div>
-          <RulesLogin title={"Đăng ký"} />
+          <RulesLogin title={'Đăng ký'} />
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const RulesLogin = ({ title }) => {
   return (
@@ -24,11 +24,11 @@ const RulesLogin = ({ title }) => {
         </div>
         <div className="text-xs">
           <span className="text-gray-400">
-            {title} có nghĩa bạn đồng ý với{" "}
+            {title} có nghĩa bạn đồng ý với{' '}
             <a className="text-blue-700 hover:text-blue-500" href="">
               Thỏa thuận người dùng
-            </a>{" "}
-            và {""}
+            </a>{' '}
+            và {''}
             <a className="text-blue-700 hover:text-blue-500" href="">
               Chính sách quyền riêng tư
             </a>
@@ -36,7 +36,7 @@ const RulesLogin = ({ title }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default RulesLogin;
+export default RulesLogin
