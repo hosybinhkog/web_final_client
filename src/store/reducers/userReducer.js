@@ -2,14 +2,14 @@ import {
   LOGIN_SUCCESS,
   LOGIN_REQUEST,
   LOGIN_FAILURE,
-} from "../actions/userActions";
+} from '../actions/userActions'
 
 const initialState = {
   loading: false,
   user: null,
   error: null,
   isAuthenticated: false,
-};
+}
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const userReducer = (state = initialState, action) => {
         loading: true,
         isAuthenticated: false,
         user: null,
-      };
+      }
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -27,7 +27,7 @@ const userReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.payload,
         error: null,
-      };
+      }
     case LOGIN_FAILURE:
       return {
         ...state,
@@ -35,10 +35,10 @@ const userReducer = (state = initialState, action) => {
         isAuthenticated: false,
         user: null,
         error: action.payload,
-      };
+      }
     default:
-      return { ...state };
+      return { ...state }
   }
-};
+}
 
-export default userReducer;
+export default userReducer

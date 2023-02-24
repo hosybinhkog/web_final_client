@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Home = () => {
   return (
@@ -10,7 +10,8 @@ const Home = () => {
               <div className="text-lg font-semibold">
                 <a
                   href="/"
-                  className="flex gap-2 pb-3 hover:bg-zinc-500 hover:rounded-lg">
+                  className="flex gap-2 pb-3 hover:bg-zinc-500 hover:rounded-lg"
+                >
                   <i className="fa-regular fa-heart mt-1"></i>
                   <p>Theo dõi của tôi</p>
                 </a>
@@ -19,7 +20,8 @@ const Home = () => {
                 <div className="">
                   <a
                     href="/"
-                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                  >
                     <div className="">
                       <img
                         className="border rounded-full object-cover w-16"
@@ -42,7 +44,8 @@ const Home = () => {
                 <div className="">
                   <a
                     href="/"
-                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                  >
                     <div className="">
                       <img
                         className="border rounded-full object-cover w-16"
@@ -95,21 +98,24 @@ const Home = () => {
               <div className="">
                 <a
                   href="/"
-                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                >
                   <div className="flex flex-col gap-2 ">
                     <span>League of Legends</span>
                   </div>
                 </a>
                 <a
                   href="/"
-                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                >
                   <div className="flex flex-col gap-2 ">
                     <span>GTA5</span>
                   </div>
                 </a>
                 <a
                   href="/"
-                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                >
                   <div className="flex flex-col gap-2 ">
                     <span>PUBG Mobile</span>
                   </div>
@@ -137,14 +143,16 @@ const Home = () => {
                 <div className="">
                   <a
                     href="/"
-                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                  >
                     <div className="flex flex-col gap-2 ">
                       <span>Voice Room</span>
                     </div>
                   </a>
                   <a
                     href="/"
-                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+                    className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                  >
                     <div className="flex flex-col gap-2 ">
                       <span>NimoShow</span>
                     </div>
@@ -166,7 +174,7 @@ const Home = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

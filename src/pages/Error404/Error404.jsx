@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Error404 = () => {
   return (
@@ -12,7 +12,7 @@ const Error404 = () => {
           We couldn't find that page
         </p>
         <p className="text-gray-500 font-bold leading-7 tracking-wide">
-          Try searching or go to{" "}
+          Try searching or go to{' '}
           <span className="text-blue-600 font-semibold leading-7">
             <Link to="/">NimoTV's home page.</Link>
           </span>
@@ -26,7 +26,7 @@ const Error404 = () => {
         />
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default Error404;
+export default Error404

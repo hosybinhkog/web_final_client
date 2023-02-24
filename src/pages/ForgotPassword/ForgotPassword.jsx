@@ -1,6 +1,6 @@
-import React from "react";
-import RulesLogin from "../.././Components/Commom/RulesLogin";
-import { Link } from "react-router-dom";
+import React from 'react'
+import RulesLogin from '../.././Components/Commom/RulesLogin'
+import { Link } from 'react-router-dom'
 
 const ForgotPassword = () => {
   return (
@@ -59,15 +59,16 @@ const ForgotPassword = () => {
             </span>
             <button
               type="submit"
-              className="w-full mt-6 bg-sky-500 rounded-md h-8 hover:bg-sky-300">
+              className="w-full mt-6 bg-sky-500 rounded-md h-8 hover:bg-sky-300"
+            >
               Gửi
             </button>
           </div>
-          <RulesLogin title={"Đăng nhập"} />
+          <RulesLogin title={'Đăng nhập'} />
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword

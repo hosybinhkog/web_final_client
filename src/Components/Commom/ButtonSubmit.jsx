@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const ButtonSubmit = ({ titleButton }) => {
   return (
@@ -7,7 +7,7 @@ const ButtonSubmit = ({ titleButton }) => {
         <button>{titleButton}</button>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ButtonSubmit;
+export default ButtonSubmit
