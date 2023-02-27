@@ -1,5 +1,5 @@
-import React from "react";
-import ItemProduct from "../Commom/itemProduct";
+import React from 'react'
+import ItemProduct from '../Commom/itemProduct'
 
 const FeedProduct = () => {
   return (
@@ -20,16 +20,10 @@ const FeedProduct = () => {
         </div>
         <div className="flex gap-4 grid flex-wrap grid-cols-5">
           <ItemProduct />
-          <ItemProduct />
-          <ItemProduct />
-          <ItemProduct />
-          <ItemProduct />
-          <ItemProduct />
-          <ItemProduct />
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default FeedProduct;
+export default FeedProduct

@@ -1,17 +1,19 @@
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import Routers from "../../routers/Routers";
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import Routers from '../../routers/Routers'
 
 const Layout = () => {
   return (
     <div className="overflow-x-hidden">
-      <Header />
-      <div className="min-h-[80vh]">
+      <div className="fixed top-0 z-20">
+        <Header />
+      </div>
+      <div className="min-h-[80vh] mt-16">
         <Routers />
       </div>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
