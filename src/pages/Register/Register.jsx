@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RulesLogin from '../.././Components/Commom/RulesLogin'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Register = () => {
+  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
+  const { isAuthenticated, error, success } = useSelector((state) => state.user)
+
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
+
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+
   return (
     <>
       <div className="bg-black text-white w-1/3 m-auto my-10 rounded-2xl ">

@@ -34,7 +34,7 @@ const Home = () => {
                       <div className="flex gap-28">
                         <span>LMHT</span>
                         <div className=" flex gap-1 items-center">
-                          <i class="fa-solid fa-users"></i>
+                          <i className="fa-solid fa-users"></i>
                           <span>25k</span>
                         </div>
                       </div>
@@ -58,7 +58,7 @@ const Home = () => {
                       <div className="flex gap-28">
                         <span>LMHT</span>
                         <div className=" flex gap-1 items-center">
-                          <i class="fa-solid fa-users"></i>
+                          <i className="fa-solid fa-users"></i>
                           <span>25k</span>
                         </div>
                       </div>
@@ -83,13 +83,13 @@ const Home = () => {
               </a>
               <a href="/">
                 <div className="flex gap-3 text-lg font-semibold items-center hover:bg-zinc-500 hover:rounded-lg py-3">
-                  <i class="fa-solid fa-hands-holding-child"></i>
+                  <i className="fa-solid fa-hands-holding-child"></i>
                   <span>Sảnh Danh Vọng</span>
                 </div>
               </a>
               <a href="/">
                 <div className="flex gap-3 text-lg font-semibold items-center hover:bg-zinc-500 hover:rounded-lg py-3">
-                  <i class="fa-solid fa-gamepad"></i>
+                  <i className="fa-solid fa-gamepad"></i>
                   <span>Game</span>
                 </div>
               </a>
@@ -134,7 +134,7 @@ const Home = () => {
               <div>
                 <a href="/">
                   <div className="flex gap-3 text-lg font-semibold items-center hover:bg-zinc-500 hover:rounded-lg py-3">
-                    <i class="fa-solid fa-puzzle-piece"></i>
+                    <i className="fa-solid fa-puzzle-piece"></i>
                     <span>Giải trí</span>
                   </div>
                 </a>
