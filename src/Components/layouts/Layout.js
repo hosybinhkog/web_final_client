@@ -8,7 +8,7 @@ const Layout = () => {
       <div className="fixed top-0 z-20">
         <Header />
       </div>
-      <div className="min-h-[80vh] mt-16">
+      <div className="min-h-[80vh] mt-16 flex justify-center items-center">
         <Routers />
       </div>
       <Footer />

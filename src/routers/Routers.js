@@ -9,6 +9,7 @@ import Rank from '../Components/Commom/Rank'
 import FeedProduct from '../Components/Product/feedProduct'
 import LiveShowPage from '../Components/categoryPage/liveShow'
 import LiveStreaming from '../Components/categoryPage/livestreaming'
+import UsersPage from '../Components/users/usersPage'
 
 const Routers = () => {
   return (
@@ -19,6 +20,7 @@ const Routers = () => {
       <Route path="/feedProduct" element={<FeedProduct />} />
       <Route path="/liveShowPage" element={<LiveShowPage />} />
       <Route path="/liveStreaming" element={<LiveStreaming />} />
+      <Route path="/usersPage" element={<UsersPage />} />
       <Route path="/Register" element={<Register />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="*" element={<Error404 />} />
