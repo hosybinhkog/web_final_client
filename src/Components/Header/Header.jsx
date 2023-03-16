@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import ButtonSubmit from '../Commom/ButtonSubmit'
-import { login } from '../../store/actions/userActions'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../../store/actions/userActions'
 
 const Header = () => {
-  // const dispatch = useDispatch();
-  const username = useSelector((state) => state.username)
+  const { user } = useSelector((state) => state.users)
 
-  // const handleLogin = (username, password) => {
-  //   dispatch(login(username, password));
-  // };
+  const handleSubmitLogout = (e) => {
+    e.preventDefault()
+    dispatch(logout())
+  }
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (user === []) {
+      alert('Logout success')
+      navigate('/Login')
+    }
+  }, [user, navigate])
   return (
     <>
       <div className="h-16 w-screen bg-black ">
@@ -124,13 +133,13 @@ const Header = () => {
               </ul>
             </div>
             <div>
-              {username ? (
+              {user && user.username ? (
                 <div className="flex items-center gap-4 my-3 text-white">
-                  <span>Hello {username}</span>
-                  <div>
-                    <Link to="/Login">
-                      <ButtonSubmit titleButton={'Thoát'} />
-                    </Link>
+                  <Link to="/UsersPage">
+                    <span>Hello {user.username}</span>
+                  </Link>
+                  <div className="mt-1" onClick={handleSubmitLogout}>
+                    <ButtonSubmit titleButton={'Thoát'} />
                   </div>
                 </div>
               ) : (

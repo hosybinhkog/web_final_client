@@ -1,46 +1,32 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import RulesLogin from '../../Components/Commom/RulesLogin'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { login } from '../../store/actions/userActions'
 
 const Login = () => {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const dispatch = useDispatch()
+  const { user, error } = useSelector((state) => state.users)
 
-    if (username === 'admin' && password === 'password') {
-      window.location.href = '/'
-    } else {
-      setError('Tên đăng nhập hoặc mật khẩu không đúng')
-    }
+  console.log(user)
+
+  const navigate = useNavigate()
+
+  const handleSubmitLogin = (e) => {
+    e.preventDefault()
+    dispatch(login(email, password))
   }
 
-  // Api Login
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const response = await fetch('/api/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ username, password }),
-  //     });
-  //     const data = await response.json();
-  //     if (data.success) {
-  //       // Lưu thông tin người dùng vào phiên hoặc cookie
-  //       // Chuyển hướng người dùng đến trang chính
-  //       window.location.href = '/home';
-  //     } else {
-  //       setError(data.message);
-  //     }
-  //   } catch (error) {
-  //     setError('Lỗi kết nối đến máy chủ');
-  //   }
-  // };
+  useEffect(() => {
+    if (user && user.email) {
+      alert('Login success')
+      navigate('/')
+    }
+  }, [user, dispatch, navigate])
 
   return (
     <>
@@ -60,13 +46,13 @@ const Login = () => {
             <div className="pb-4">
               <input
                 className="w-full rounded-md text-gray-500 bg-gray-100"
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="Nhập Email"
               />
             </div>
-            {error && <p className="text-red-600">{error}</p>}
+            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
             <div className="pb-4">
               <input
                 className="w-full rounded-md text-gray-500 bg-gray-100"
@@ -81,13 +67,13 @@ const Login = () => {
                 <Link to="/ForgotPassword">Quên mật khẩu</Link>
               </div>
               <div className="font-normal pb-4 float-right text-blue-600 hover:text-blue-400">
-                <Link to="/Register">Đăng ký tài khoản mới</Link>
+                <Link to="/register">Đăng ký tài khoản mới</Link>
               </div>
             </div>
 
             <button
               type="submit"
-              onClick={handleSubmit}
+              onClick={handleSubmitLogin}
               className="w-full mt-6 bg-sky-500 rounded-md h-8 hover:bg-sky-300"
             >
               Đăng nhâp
