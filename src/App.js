@@ -26,8 +26,8 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <Toaster duration="500" position="top-center" />
         <Layout />
-        <Toaster />
       </BrowserRouter>
     </div>
   )

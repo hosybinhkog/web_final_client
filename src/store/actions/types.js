@@ -14,3 +14,16 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS'
 export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST'
 export const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL'
+
+export const UPDATE_PASSWORD_REQUEST = 'update_password_request'
+export const UPDATE_PASSWORD_SUCCESS = 'update_password_success'
+export const UPDATE_PASSWORD_FAILURE = 'update_password_failure'
+export const UPDATE_PASSWORD_RESET = 'update_password_reset'
+
+export const FORGOT_PASSWORD_REQUEST = 'forgot_password_request'
+export const FORGOT_PASSWORD_SUCCESS = 'forgot_password_reset'
+export const FORGOT_PASSWORD_FAILURE = 'forgot_password_failure'
+
+export const RESET_PASSWORD_REQUEST = 'reset_password_request'
+export const RESET_PASSWORD_SUCCESS = 'reset_password_success'
+export const RESET_PASSWORD_FAILURE = 'reset_password_failure'

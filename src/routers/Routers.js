@@ -10,7 +10,11 @@ import FeedProduct from '../Components/Product/feedProduct'
 import LiveShowPage from '../Components/categoryPage/liveShow'
 import LiveStreaming from '../Components/categoryPage/livestreaming'
 import UsersPage from '../Components/users/usersPage'
+<<<<<<< HEAD
 import UpdateUser from '../Components/users/updateUser'
+=======
+import ResetPassword from '../pages/reset-password'
+>>>>>>> bf9a77d0a34130bc7a36424012a4562ae4e47eba
 
 const Routers = () => {
   return (
@@ -25,6 +29,7 @@ const Routers = () => {
       <Route path="/updateUser" element={<UpdateUser />} />
       <Route path="/Register" element={<Register />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="*" element={<Error404 />} />
     </Routes>
   )

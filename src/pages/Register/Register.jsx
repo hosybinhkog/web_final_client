@@ -15,8 +15,6 @@ const Register = () => {
     (state) => state.users
   )
 
-  console.log(error)
-
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -38,11 +36,12 @@ const Register = () => {
     }
 
     if (error) {
-      toast.error(error)
-      setErrorMessage(error)
-      clearErrors()
+      const errorCustom = 'Error to register user'
+      toast.error(errorCustom)
+      setErrorMessage(errorCustom)
+      dispatch(clearErrors())
     }
-  }, [isAuthenticated, error, navigate, success])
+  }, [isAuthenticated, error, navigate, success, dispatch])
 
   return (
     <>
@@ -118,7 +117,6 @@ const Register = () => {
               <div>
                 <button
                   type="submit"
-                  onClick={handleSubmitReg}
                   className="w-full mt-2 bg-sky-500 rounded-md h-8 hover:bg-sky-300"
                 >
                   Đăng ký

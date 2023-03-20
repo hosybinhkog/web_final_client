@@ -11,6 +11,12 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_REQUEST,
   REGISTER_USER_FAIL,
+  FORGOT_PASSWORD_REQUEST,
+  RESET_PASSWORD_REQUEST,
+  FORGOT_PASSWORD_SUCCESS,
+  RESET_PASSWORD_SUCCESS,
+  FORGOT_PASSWORD_FAILURE,
+  RESET_PASSWORD_FAILURE,
 } from '../actions/types'
 
 const userReducer = (state = { user: {} }, action) => {
@@ -69,3 +75,28 @@ const userReducer = (state = { user: {} }, action) => {
 }
 
 export default userReducer
+
+export const forgotPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case FORGOT_PASSWORD_REQUEST:
+    case RESET_PASSWORD_REQUEST:
+      return { ...state, loading: true, error: null }
+    case FORGOT_PASSWORD_SUCCESS:
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload,
+        success: true,
+      }
+    case FORGOT_PASSWORD_FAILURE:
+    case RESET_PASSWORD_FAILURE:
+      return { ...state, loading: false, error: action.payload }
+    case CLEAR_ERRORS:
+      return { ...state, error: null }
+    default:
+      return {
+        ...state,
+      }
+  }
+}
