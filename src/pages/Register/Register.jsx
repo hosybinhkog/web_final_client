@@ -47,7 +47,7 @@ const Register = () => {
   return (
     <>
       <section className="bg-black text-white w-1/3 m-auto my-10 rounded-2xl ">
-        <form onSubmit={handleSubmitReg}>
+        <form>
           <div className="flex gap-48 py-5 pl-4">
             <p className="text-xl font-bold text-white">NIMO TV</p>
             <p className="font-bold text-lg">Đăng ký</p>

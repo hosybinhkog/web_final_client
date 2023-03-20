@@ -1,6 +1,10 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const UsersPage = () => {
+  const { user } = useSelector((state) => state.users)
+
   return (
     <>
       <div className="flex min-h-[80vh] w-full">
@@ -87,7 +91,43 @@ const UsersPage = () => {
             </div>
           </div>
         </div>
-        <div className="w-10/12 bg-black">aa</div>
+        <div className="w-10/12 bg-black flex flex-col pl-10 pt-10">
+          <div className="pb-10">
+            {!user.avatar ? (
+              <img
+                className="border rounded-[50%] object-cover w-40"
+                src="https://upanh123.com/wp-content/uploads/2021/03/hinh-anh-cute13.jpg"
+                alt=""
+              />
+            ) : (
+              <img
+                className="border rounded-[50%] object-cover w-40"
+                src={user.avatar.url}
+                alt=""
+              />
+            )}
+          </div>
+          <div className="text-white flex flex-col gap-5">
+            <span className="flex gap-3">
+              username: <p>{user.username}</p>
+            </span>
+            <span className="flex gap-3">
+              email: <p>{user.email}</p>
+            </span>
+            <span className="flex gap-3">
+              Gender: {user.gender ? <p>Nam</p> : <p>Nữ</p>}{' '}
+            </span>
+            <span className="flex gap-3">
+              <div className="bg-[url('/public/diamond.png')] w-6 h-6 bg-no-repeat"></div>
+              {user.cost}
+            </span>
+            <Link to="/updateUser">
+              <button className="flex justify-center w-44 mt-6 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer">
+                Cập nhật tài khoản
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   )
