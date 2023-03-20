@@ -29,7 +29,7 @@ const ForgotPassword = () => {
               <input
                 className="w-full bg-gray-100 rounded-md text-gray-500"
                 type="text"
-                placeholder="Nhập số điện thoại di động"
+                placeholder="Nhập email"
               />
             </div>
             <div className="flex justify-between gap-4 items-center">
@@ -55,7 +55,7 @@ const ForgotPassword = () => {
             </div>
 
             <span className="text-gray-400 py-4 font-light text-sm">
-              Mật khảu phải gồm 6-20 ký tự chữ cái và chữ số
+              Mật khẩu phải có ít nhất 8 ký tự
             </span>
             <button
               type="submit"

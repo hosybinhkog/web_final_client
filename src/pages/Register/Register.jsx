@@ -3,18 +3,25 @@ import RulesLogin from '../.././Components/Commom/RulesLogin'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../store/actions/userActions'
+import { toast } from 'react-hot-toast'
+import { clearErrors } from '../../store/actions/userActions'
 
 const Register = () => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
-  const { isAuthenticated } = useSelector((state) => state.users)
+  const { isAuthenticated, error, success } = useSelector(
+    (state) => state.users
+  )
+
+  console.log(error)
 
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmitReg = (e) => {
     e.preventDefault()
@@ -25,7 +32,17 @@ const Register = () => {
     if (isAuthenticated) {
       navigate('/')
     }
-  }, [isAuthenticated])
+
+    if (success) {
+      toast.success('Register success!')
+    }
+
+    if (error) {
+      toast.error(error)
+      setErrorMessage(error)
+      clearErrors()
+    }
+  }, [isAuthenticated, error, navigate, success])
 
   return (
     <>
@@ -55,6 +72,7 @@ const Register = () => {
                   placeholder="Nhập họ và tên"
                 />
               </div>
+              {errorMessage && <p className="text-red-600">{errorMessage}</p>}
               <div className="pb-5">
                 <input
                   className="w-full bg-gray-100 rounded-md text-gray-500"
@@ -89,24 +107,23 @@ const Register = () => {
                 />
               </div>
 
-              <span className="text-gray-400 py-4 font-light text-sm">
-                Mật khẩu phải gồm 8 ký tự và ít nhất 1 chữ hoa 1 chữ thường và 1
-                số
-              </span>
-              <div className="font-normal float-left mt-2 text-blue-600 hover:text-blue-400">
-                <Link to="/Login">Đã có tài khoản</Link>
+              <div className="flex flex-col gap-2">
+                <span className="text-gray-400  font-light text-sm ">
+                  Mật khẩu phải có ít nhất 8 ký tự
+                </span>
+                <div className="font-normal text-blue-600 hover:text-blue-400">
+                  <Link to="/Login">Đã có tài khoản</Link>
+                </div>
               </div>
-              {/* <Link to="/Login"> */}
               <div>
                 <button
                   type="submit"
+                  onClick={handleSubmitReg}
                   className="w-full mt-2 bg-sky-500 rounded-md h-8 hover:bg-sky-300"
                 >
                   Đăng ký
                 </button>
               </div>
-
-              {/* </Link> */}
             </div>
 
             <RulesLogin title={'Đăng ký'} />

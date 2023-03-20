@@ -30,7 +30,7 @@ export const login = (email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOGIN_FAILURE,
-      payload: dispatch(error.message),
+      payload: error.response.data.message,
     })
   }
 }
@@ -49,7 +49,7 @@ export const loadUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOAD_USER_FAIL,
-      payload: dispatch(error.message),
+      payload: error.response.data.message,
     })
   }
 }
@@ -62,7 +62,7 @@ export const logout = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOGOUT_FAILURE,
-      payload: dispatch(error.message),
+      payload: error.response.data.message,
     })
   }
 }
@@ -84,7 +84,7 @@ export const register = (username, email, password) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: REGISTER_USER_FAIL,
-      payload: dispatch(error.message),
+      payload: error.response.data.message,
     })
   }
 }
