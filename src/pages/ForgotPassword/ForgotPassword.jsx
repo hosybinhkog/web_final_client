@@ -1,23 +1,35 @@
-import React, { useState } from 'react'
-import RulesLogin from '../.././Components/Commom/RulesLogin'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import RulesLogin from '../.././Components/Commom/RulesLogin'
+import { forgotPassword } from '../../store/actions/userActions'
 
 const ForgotPassword = () => {
-  const naviagate = useNavigate()
   const dispatch = useDispatch()
 
   const [email, setEmail] = useState('')
-  const { error, message } = useSelector((state) => state.password)
+  const { error, success } = useSelector((state) => state.password)
 
   const handleForgotPasswordSubmit = async (e) => {
     e.preventDefault()
     if (!email) return toast.error('Emaill is required')
     const id = toast.loading('submiting...')
 
+    await dispatch(forgotPassword(email))
+
     toast.remove(id)
   }
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+    }
+
+    if (success) {
+      toast.success('Success please check mail !!')
+    }
+  }, [error, success])
 
   return (
     <>

@@ -1,26 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ButtonSubmit from '../Commom/ButtonSubmit'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { logout } from '../../store/actions/userActions'
+import { toast } from 'react-hot-toast'
 
 const Header = () => {
   const { user } = useSelector((state) => state.users)
 
   const handleSubmitLogout = (e) => {
     e.preventDefault()
+    toast.success('Logout success!')
     dispatch(logout())
   }
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    if (user === []) {
-      alert('Logout success')
-      navigate('/Login')
-    }
-  }, [user, navigate])
   return (
     <>
       <div className="h-16 w-screen bg-black ">
@@ -135,11 +130,61 @@ const Header = () => {
             <div>
               {user && user.username ? (
                 <div className="flex items-center gap-4 my-3 text-white">
-                  <Link to="/UsersPage">
-                    <span>Hello {user.username}</span>
-                  </Link>
-                  <div className="mt-1" onClick={handleSubmitLogout}>
-                    <ButtonSubmit titleButton={'Thoát'} />
+                  <div className=" relative group ">
+                    <div className="flex items-center h-full">
+                      <Link to="/UsersPage">
+                        <div className="flex gap-2 mb-2">
+                          <img
+                            className="border rounded-full object-cover w-12"
+                            src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
+                            alt=""
+                          />
+                          <span className="text-white text-xl ">
+                            {user.username}
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className=" invisible opacity-0 absolute right-0 bg-[rgb(35,35,35)]  bg-black rounded-lg w-96 mt-8 flex flex-col gap-2 p-3 group-hover:opacity-100 group-hover:visible group-hover:mt-0">
+                      <div className="flex justify-between">
+                        <div className="flex gap-2 mb-2">
+                          <img
+                            className="border rounded-full object-cover w-12"
+                            src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
+                            alt=""
+                          />
+                          <span className="text-white text-xl ">
+                            {user.username}
+                          </span>
+                        </div>
+                        <div className="mt-1 " onClick={handleSubmitLogout}>
+                          <ButtonSubmit titleButton={'Logout'} />
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-2 items-center justify-center">
+                        <Link to="/UsersPage">
+                          <div>
+                            <a
+                              href="/"
+                              className="flex gap-2 items-center menu-item"
+                            >
+                              <i class="fa-solid fa-user"></i>
+                              <span>Thông tin cá nhân</span>
+                            </a>
+                          </div>
+                        </Link>
+                        <div>
+                          <a
+                            href="/"
+                            className="flex gap-2 items-center menu-item"
+                          >
+                            <i class="fa-solid fa-tablet"></i>
+                            <span className="">Thống kê stream</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
