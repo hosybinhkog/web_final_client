@@ -3,7 +3,7 @@ import {
   combineReducers,
   applyMiddleware,
 } from 'redux'
-import userReducer from './reducers/userReducer'
+import userReducer, { forgotPasswordReducer } from './reducers/userReducer'
 
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
@@ -12,6 +12,7 @@ const initialState = {}
 
 const reducers = combineReducers({
   users: userReducer,
+  password: forgotPasswordReducer,
 })
 
 const middleware = [thunk]

@@ -25,7 +25,7 @@ const Register = () => {
     if (isAuthenticated) {
       navigate('/')
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, navigate])
 
   return (
     <>
