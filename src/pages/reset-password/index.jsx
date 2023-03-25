@@ -26,7 +26,7 @@ const ResetPassword = () => {
     e.preventDefault()
 
     if (!password || !passwordConfirm) {
-      const message = 'Passowrd and password confirm is required'
+      const message = 'Password and password confirm is required'
       toast.error(message)
       setErrorMessage(message)
       return
@@ -36,11 +36,11 @@ const ResetPassword = () => {
       !validatePasswrodReset(password.toString(), passwordConfirm.toString())
     ) {
       setErrorMessage(
-        'Password is includes one regex (8 - 16) and match confirm password'
+        'Password phải có ít nhất 8 ký tự và trùng với ConfirmPassword'
       )
 
       toast.error(
-        'Password is includes one regex (8 - 16) and match confirm password'
+        'Password phải có ít nhất 8 ký tự và trùng với ConfirmPassword'
       )
 
       return

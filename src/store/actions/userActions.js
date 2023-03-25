@@ -22,6 +22,10 @@ import {
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILURE,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_RESET,
+  UPDATE_PROFILE_FAILURE,
 } from './types'
 
 export const login = (email, password) => async (dispatch) => {
@@ -143,6 +147,21 @@ export const resetPassword = (token, password) => async (dispatch) => {
       payload:
         error?.response?.data?.message ||
         'Hết time reset password hoặc hệ thống đang gặp vấn đề xin thử lại với forgot password',
+    })
+  }
+}
+
+export const updateProfileUser = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_REQUEST })
+
+    const { data } = await axiosClient.put(`/user/me/update`, userData)
+
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_FAILURE,
+      payload: error.response.data.message,
     })
   }
 }

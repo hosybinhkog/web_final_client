@@ -1,9 +1,18 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import img from './avatar.jpg'
 
 const UsersPage = () => {
   const { user } = useSelector((state) => state.users)
+  // const formattDate = () => {
+  //   if (user && user.birthday) {
+  //     const dateString = user.birthday
+  //     const [year, month, day] = dateString.substring(0, 10).split('-')
+  //     const formattedDate = `${day}/${month}/${year}`
+  //     return formattedDate
+  //   }
+  // }
 
   return (
     <>
@@ -93,33 +102,88 @@ const UsersPage = () => {
         </div>
         <div className="w-10/12 bg-black flex flex-col pl-10 pt-10">
           <div className="pb-10">
-            {!user.avatar ? (
+            {!user?.avatar ? (
               <img
                 className="border rounded-[50%] object-cover w-40"
-                src="https://upanh123.com/wp-content/uploads/2021/03/hinh-anh-cute13.jpg"
+                src={img}
                 alt=""
               />
             ) : (
               <img
                 className="border rounded-[50%] object-cover w-40"
-                src={user.avatar.url}
+                src={
+                  user?.avatar
+                    ? user?.avatar?.url
+                    : user?.avatar?.url
+                    ? user?.avatar?.url
+                    : null
+                }
                 alt=""
               />
             )}
           </div>
           <div className="text-white flex flex-col gap-5">
             <span className="flex gap-3">
-              username: <p>{user.username}</p>
+              Username: <p>{user?.username}</p>
             </span>
+
+            {user?.email && user?.show_email ? (
+              <span className="flex gap-3">
+                Email: <p>{user?.email}</p>
+              </span>
+            ) : (
+              <span className="hidden"></span>
+            )}
+
+            {user?.gender && user?.show_gender ? (
+              <span className="flex gap-3">
+                Gender: {user?.gender ? <p>Nam</p> : <p>Nữ</p>}{' '}
+              </span>
+            ) : (
+              <span className="hidden"></span>
+            )}
+
+            {user?.phone && user?.show_phone ? (
+              <span className="flex gap-3">
+                Phone: <p>{user?.phone}</p>
+              </span>
+            ) : (
+              <span className="hidden"></span>
+            )}
+
+            {user?.address && user?.show_address ? (
+              <span className="flex gap-3">
+                Address: <p>{user?.address}</p>
+              </span>
+            ) : (
+              <span className="hidden"></span>
+            )}
+
+            {user?.birthday && user?.show_birthday ? (
+              <span className="flex gap-3">
+                Birthday:{' '}
+                <p>{new Date(user?.birthday).toLocaleDateString('en-GB')}</p>
+              </span>
+            ) : (
+              <span className="hidden"></span>
+            )}
+
+            {user?.profileDescription && user?.show_profile_index ? (
+              <span className="flex gap-3">
+                Profile Description: <p>{user?.profileDescription}</p>
+              </span>
+            ) : (
+              <span className="hidden"></span>
+            )}
+
             <span className="flex gap-3">
-              email: <p>{user.email}</p>
+              About me:{' '}
+              <div dangerouslySetInnerHTML={{ __html: user?.about }} />
             </span>
-            <span className="flex gap-3">
-              Gender: {user.gender ? <p>Nam</p> : <p>Nữ</p>}{' '}
-            </span>
+
             <span className="flex gap-3">
               <div className="bg-[url('/public/diamond.png')] w-6 h-6 bg-no-repeat"></div>
-              {user.cost}
+              {user?.cost}
             </span>
             <Link to="/updateUser">
               <button className="flex justify-center w-44 mt-6 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer">

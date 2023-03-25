@@ -4,17 +4,23 @@ import ButtonSubmit from '../Commom/ButtonSubmit'
 import { Link } from 'react-router-dom'
 import { logout } from '../../store/actions/userActions'
 import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import img from '..//users/avatar.jpg'
 
 const Header = () => {
-  const { user } = useSelector((state) => state.users)
+  const { isAuthenticated, user } = useSelector((state) => state.users)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSubmitLogout = (e) => {
     e.preventDefault()
-    toast.success('Logout success!')
-    dispatch(logout())
-  }
 
-  const dispatch = useDispatch()
+    if (isAuthenticated) {
+      toast.success('Logout success!')
+      dispatch(logout())
+      navigate('/')
+    }
+  }
 
   return (
     <>
@@ -134,11 +140,36 @@ const Header = () => {
                     <div className="flex items-center h-full">
                       <Link to="/UsersPage">
                         <div className="flex gap-2 mb-2">
-                          <img
-                            className="border rounded-full object-cover w-12"
-                            src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
+                          {!user?.avatar ? (
+                            <img
+                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              src={img}
+                              alt=""
+                            />
+                          ) : (
+                            <img
+                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              src={
+                                user?.avatar
+                                  ? user?.avatar?.url
+                                  : user?.avatar?.url
+                                  ? user?.avatar?.url
+                                  : null
+                              }
+                              alt=""
+                            />
+                          )}
+                          {/* <img
+                            className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"                   
+                            src={
+                              user?.avatar
+                                ? user?.avatar?.url
+                                : user?.avatar?.url
+                                ? user?.avatar?.url
+                                : null
+                            }
                             alt=""
-                          />
+                          /> */}
                           <span className="text-white text-xl ">
                             {user.username}
                           </span>
@@ -147,14 +178,28 @@ const Header = () => {
                     </div>
 
                     <div className=" invisible opacity-0 absolute right-0 bg-[rgb(35,35,35)]  bg-black rounded-lg w-96 mt-8 flex flex-col gap-2 p-3 group-hover:opacity-100 group-hover:visible group-hover:mt-0">
-                      <div className="flex justify-between">
-                        <div className="flex gap-2 mb-2">
-                          <img
-                            className="border rounded-full object-cover w-12"
-                            src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
-                            alt=""
-                          />
-                          <span className="text-white text-xl ">
+                      <div className="flex items-center justify-between">
+                        <div className="flex gap-2 mb-2 items-center  ">
+                          {!user?.avatar ? (
+                            <img
+                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              src={img}
+                              alt=""
+                            />
+                          ) : (
+                            <img
+                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              src={
+                                user?.avatar
+                                  ? user?.avatar?.url
+                                  : user?.avatar?.url
+                                  ? user?.avatar?.url
+                                  : null
+                              }
+                              alt=""
+                            />
+                          )}
+                          <span className="text-white text-xl flex items-center">
                             {user.username}
                           </span>
                         </div>

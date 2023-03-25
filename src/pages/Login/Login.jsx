@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { clearErrors, login } from '../../store/actions/userActions'
 import { toast } from 'react-hot-toast'
 import Loading from '../../Components/Loading'
+import { validateEmailRules } from '../../utils/validatePasswordReset'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -13,14 +14,20 @@ const Login = () => {
 
   const dispatch = useDispatch()
   const { user, error, loading } = useSelector((state) => state.users)
-  console.log(error)
-
-  console.log(user)
 
   const navigate = useNavigate()
 
   const handleSubmitLogin = (e) => {
     e.preventDefault()
+
+    if (!validateEmailRules(email.toString())) {
+      setErrorMessage('Email không hợp lệ')
+
+      toast.error('Email không hợp lệ')
+
+      return
+    }
+
     const loadingId = toast.loading('Loading', { duration: 300 })
     dispatch(login(email, password))
     toast.remove(loadingId)
@@ -36,6 +43,7 @@ const Login = () => {
       toast.success('Login success!')
       navigate('/')
     }
+
     if (error) {
       toast.error(error)
       setErrorMessage(error)
@@ -65,6 +73,7 @@ const Login = () => {
                 <input
                   className="w-full rounded-md text-gray-500 bg-gray-100"
                   type="email"
+                  id="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="Nhập Email"
@@ -75,6 +84,7 @@ const Login = () => {
                 <input
                   className="w-full rounded-md text-gray-500 bg-gray-100"
                   type="password"
+                  id="password"
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   placeholder="Nhập mật khẩu"

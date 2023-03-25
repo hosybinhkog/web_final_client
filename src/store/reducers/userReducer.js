@@ -17,6 +17,10 @@ import {
   RESET_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAILURE,
   RESET_PASSWORD_FAILURE,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_RESET,
+  UPDATE_PROFILE_FAILURE,
 } from '../actions/types'
 
 const userReducer = (state = { user: {} }, action) => {
@@ -75,6 +79,40 @@ const userReducer = (state = { user: {} }, action) => {
 }
 
 export default userReducer
+
+export const updateUserReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      }
+
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: action.payload,
+        isUpdated: action.payload,
+      }
+
+    case UPDATE_PROFILE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+    case UPDATE_PROFILE_RESET:
+      return {
+        ...state,
+        isUpdated: false,
+      }
+
+    default:
+      return state
+  }
+}
 
 export const forgotPasswordReducer = (state = {}, action) => {
   switch (action.type) {

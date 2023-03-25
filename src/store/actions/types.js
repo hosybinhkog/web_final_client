@@ -27,3 +27,8 @@ export const FORGOT_PASSWORD_FAILURE = 'forgot_password_failure'
 export const RESET_PASSWORD_REQUEST = 'reset_password_request'
 export const RESET_PASSWORD_SUCCESS = 'reset_password_success'
 export const RESET_PASSWORD_FAILURE = 'reset_password_failure'
+
+export const UPDATE_PROFILE_REQUEST = 'UPDATE_PROFILE_REQUEST'
+export const UPDATE_PROFILE_RESET = 'UPDATE_PROFILE_RESET'
+export const UPDATE_PROFILE_SUCCESS = 'UPDATE_PROFILE_SUCCESS'
+export const UPDATE_PROFILE_FAILURE = 'UPDATE_PROFILE_FAILURE'
