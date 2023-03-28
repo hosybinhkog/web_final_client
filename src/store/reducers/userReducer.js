@@ -21,6 +21,11 @@ import {
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_RESET,
   UPDATE_PROFILE_FAILURE,
+  REGISTER_STREAMER_SUCCESS,
+  REGISTER_STREAMER_REQUEST,
+  REGISTER_STREAMER_FAIL,
+  REGISTER_STREAMER_RESET_REGISTER_STREAMER,
+  CLEAR_ERRORS_REGISTER_STREAMER,
 } from '../actions/types'
 
 const userReducer = (state = { user: {} }, action) => {
@@ -69,6 +74,44 @@ const userReducer = (state = { user: {} }, action) => {
         error: action.payload,
       }
     case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      }
+    default:
+      return state
+  }
+}
+
+export const userStreamerReducer = (state = { streamer: {} }, action) => {
+  switch (action.type) {
+    case REGISTER_STREAMER_REQUEST:
+      return {
+        loading: true,
+        success: false,
+        streamer: null,
+        error: null,
+      }
+    case REGISTER_STREAMER_SUCCESS:
+      return {
+        loading: false,
+        streamer: action.payload,
+        success: true,
+        error: null,
+      }
+    case REGISTER_STREAMER_FAIL:
+      return {
+        loading: false,
+        streamer: null,
+        error: action.payload,
+        success: false,
+      }
+    case REGISTER_STREAMER_RESET_REGISTER_STREAMER:
+      return {
+        ...state,
+        success: null,
+      }
+    case CLEAR_ERRORS_REGISTER_STREAMER:
       return {
         ...state,
         error: null,

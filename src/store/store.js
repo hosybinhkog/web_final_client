@@ -6,6 +6,7 @@ import {
 import userReducer, {
   forgotPasswordReducer,
   updateUserReducer,
+  userStreamerReducer,
 } from './reducers/userReducer'
 
 import thunk from 'redux-thunk'
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   users: userReducer,
   password: forgotPasswordReducer,
   updateProfileUser: updateUserReducer,
+  streamer: userStreamerReducer,
 })
 
 const middleware = [thunk]

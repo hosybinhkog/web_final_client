@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import imgAvatar from './avatar.jpg'
+import imgAvatar from '../../assets/images/defauktAvatar.gif'
 import { useNavigate } from 'react-router-dom'
 import 'react-quill/dist/quill.snow.css'
 import {
@@ -10,16 +10,13 @@ import {
   updateProfileUser,
 } from '../../store/actions/userActions'
 import { UPDATE_PROFILE_RESET } from '../../store/actions/types'
-import QuillEditor from '../Commom/quillEditor'
 import ReactQuill from 'react-quill'
 
 const UpdateUser = () => {
   const { user: userSelect, loading } = useSelector((state) => state.users)
   const { error, isUpdated } = useSelector((state) => state.updateProfileUser)
   const [avatarPreview, setAvatarPreview] = useState(imgAvatar)
-  const [avatar, setAvatar] = useState(
-    'https://phunugioi.com/wp-content/uploads/2020/02/anh-anime-cute-girl.jpg'
-  )
+  const [avatar, setAvatar] = useState('')
 
   // const [about, setAbout] = useState('')
 
@@ -33,6 +30,7 @@ const UpdateUser = () => {
     birthday: userSelect?.birthday,
     profileDescription: userSelect?.profileDescription,
     about: userSelect?.about,
+    isStreammer: userSelect?.isStreammer,
     show_phone: userSelect?.show_phone,
     show_address: userSelect?.show_address,
     show_profile_index: userSelect?.show_profile_index,
@@ -49,6 +47,7 @@ const UpdateUser = () => {
     birthday,
     profileDescription,
     about,
+    isStreammer,
     show_phone,
     show_address,
     show_profile_index,
@@ -87,6 +86,8 @@ const UpdateUser = () => {
     myForm.set('birthday', user.birthday)
     myForm.set('profileDescription', user.profileDescription)
     myForm.set('about', user.about)
+    myForm.set('isStreammer', user.isStreammer)
+
     myForm.set('show_phone', user.show_phone)
     myForm.set('show_address', user.show_address)
     myForm.set('show_profile_index', user.show_profile_index)
@@ -99,7 +100,7 @@ const UpdateUser = () => {
     }
 
     await dispatch(updateProfileUser(myForm))
-    navigate('/')
+    navigate('/usersPage')
     toast.remove(id)
   }
 
@@ -133,6 +134,7 @@ const UpdateUser = () => {
         birthday: userSelect.birthday,
         profileDescription: userSelect.profileDescription,
         about: userSelect.about,
+        isStreammer: userSelect.isStreammer,
         show_phone: userSelect.show_phone,
         show_address: userSelect.show_address,
         show_profile_index: userSelect.show_profile_index,
@@ -149,7 +151,7 @@ const UpdateUser = () => {
     <>
       <form
         onSubmit={handleFormSubmitUpdate}
-        className="text-center p-4 min-h-[80vh]"
+        className="text-center p-4 min-h-[80vh] w-[1280px]"
       >
         <div className="flex flex-col gap-1 justify-center">
           {/* avatar  */}
@@ -166,7 +168,7 @@ const UpdateUser = () => {
                 />
               )}
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 justify-center items-center">
               <input
                 className="border-[1px] border-[solid] border-[green] mt-2 cursor-pointer"
                 type="file"
@@ -178,248 +180,257 @@ const UpdateUser = () => {
               />
             </div>
           </div>
-          {/* Username */}
-          <label className="flex gap-2 items-center mt-3 text-2xl">
-            Username:{' '}
-            <input
-              className="border-[1px] border-[solid] border-[green]"
-              name="username"
-              type="text"
-              value={username}
-              placeholder="Your name"
-              onChange={handleChangeDataUpdate}
-            />
-            <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
-          </label>
-          {/* Gender  */}
-          <label
-            htmlFor="gender"
-            className="mt-3 text-2xl flex gap-2 items-center"
-          >
-            Gender:
-            <div
-              className="flex gap-2"
-              name="gender"
-              value={gender}
-              onChange={handleChangeDataUpdate}
-            >
-              <div className="flex gap-2 items-center">
-                <label for="male">Nam</label>
+          <div className="flex justify-around">
+            <div>
+              {/* Username */}
+              <label className="flex gap-2 items-center mt-3 text-2xl">
+                Username{' '}
                 <input
-                  type="radio"
-                  id="male"
-                  name="gender"
-                  value="true"
-                ></input>
-              </div>
+                  className="border-[1px] border-[solid] border-[green]"
+                  name="username"
+                  type="text"
+                  value={username}
+                  placeholder="Your name"
+                  onChange={handleChangeDataUpdate}
+                />
+                <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
+              </label>
+              {/* Gender  */}
+              <label
+                htmlFor="gender"
+                className="mt-3 text-2xl flex items-center justify-between"
+              >
+                <div>Gender</div>
 
-              <div className="flex gap-2 items-center">
-                <label for="female">Nữ</label>
+                <div
+                  className="flex justify-between w-[60%]"
+                  name="gender"
+                  value={gender}
+                  onChange={handleChangeDataUpdate}
+                >
+                  <div className="flex gap-2 items-center">
+                    <label for="male">Nam</label>
+                    <input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value="true"
+                    ></input>
+                  </div>
+
+                  <div className="flex gap-2 items-center">
+                    <label for="female">Nữ</label>
+                    <input
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      value="false"
+                    ></input>
+                  </div>
+                </div>
+              </label>
+              {/* show_gender */}
+              <div
+                className="flex gap-2 mt-3 justify-between"
+                name="show_gender"
+                value={show_gender}
+                onChange={handleChangeDataUpdate}
+              >
+                <label htmlFor="">Hiển thị Gender </label>
+                <div className="flex gap-2 items-center">
+                  <label for="yes">Có</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="show_gender"
+                    value="true"
+                  ></input>
+                </div>
+
+                <div className="flex gap-2 items-center">
+                  <label for="No">Không</label>
+                  <input
+                    type="radio"
+                    id="No"
+                    name="show_gender"
+                    value="false"
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <div>
+              {/* Phone  */}
+              <label className="flex gap-2 items-center mt-3 text-2xl">
+                Phone{' '}
                 <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  value="false"
-                ></input>
+                  className="border-[1px] border-[solid] border-[green]"
+                  type="text"
+                  value={phone}
+                  name="phone"
+                  placeholder="Your phone number"
+                  onChange={handleChangeDataUpdate}
+                />
+                <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
+              </label>
+              {/* show_phone */}
+              <div
+                className="flex gap-2"
+                name="show_phone"
+                value={show_phone}
+                onChange={handleChangeDataUpdate}
+              >
+                <label htmlFor="">Hiển thị Phone </label>
+                <div className="flex gap-2 items-center">
+                  <label for="yes">Có</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="show_phone"
+                    value="true"
+                  ></input>
+                </div>
+
+                <div className="flex gap-2 items-center">
+                  <label for="No">Không</label>
+                  <input
+                    type="radio"
+                    id="No"
+                    name="show_phone"
+                    value="false"
+                  ></input>
+                </div>
+              </div>
+              {/* Address */}
+              <label className="flex gap-2 items-center mt-3 text-2xl">
+                Address{' '}
+                <input
+                  className="border-[1px] border-[solid] border-[green]"
+                  type="text"
+                  value={address}
+                  name="address"
+                  placeholder="Your address"
+                  onChange={handleChangeDataUpdate}
+                />
+                <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
+              </label>
+              {/* show_address */}
+              <div
+                className="flex gap-2"
+                name="show_address"
+                value={show_address}
+                onChange={handleChangeDataUpdate}
+              >
+                <label htmlFor="">Hiển thị Address </label>
+                <div className="flex gap-2 items-center">
+                  <label for="yes">Có</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="show_address"
+                    value="true"
+                  ></input>
+                </div>
+
+                <div className="flex gap-2 items-center">
+                  <label for="No">Không</label>
+                  <input
+                    type="radio"
+                    id="No"
+                    name="show_address"
+                    value="false"
+                  ></input>
+                </div>
               </div>
             </div>
-          </label>
-          {/* show_gender */}
-          <div
-            className="flex gap-2"
-            name="show_gender"
-            value={show_gender}
-            onChange={handleChangeDataUpdate}
-          >
-            <label htmlFor="">Hiển thị Gender: </label>
-            <div className="flex gap-2 items-center">
-              <label for="yes">Có</label>
-              <input
-                type="radio"
-                id="yes"
-                name="show_gender"
-                value="true"
-              ></input>
-            </div>
-
-            <div className="flex gap-2 items-center">
-              <label for="No">Không</label>
-              <input
-                type="radio"
-                id="No"
-                name="show_gender"
-                value="false"
-              ></input>
-            </div>
-          </div>
-          {/* Phone  */}
-          <label className="flex gap-2 items-center mt-3 text-2xl">
-            Phone:{' '}
-            <input
-              className="border-[1px] border-[solid] border-[green]"
-              type="text"
-              value={phone}
-              name="phone"
-              placeholder="Your phone number"
-              onChange={handleChangeDataUpdate}
-            />
-            <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
-          </label>
-          {/* show_phone */}
-          <div
-            className="flex gap-2"
-            name="show_phone"
-            value={show_phone}
-            onChange={handleChangeDataUpdate}
-          >
-            <label htmlFor="">Hiển thị Phone: </label>
-            <div className="flex gap-2 items-center">
-              <label for="yes">Có</label>
-              <input
-                type="radio"
-                id="yes"
-                name="show_phone"
-                value="true"
-              ></input>
-            </div>
-
-            <div className="flex gap-2 items-center">
-              <label for="No">Không</label>
-              <input
-                type="radio"
-                id="No"
-                name="show_phone"
-                value="false"
-              ></input>
-            </div>
-          </div>
-          {/* Address */}
-          <label className="flex gap-2 items-center mt-3 text-2xl">
-            Address:{' '}
-            <input
-              className="border-[1px] border-[solid] border-[green]"
-              type="text"
-              value={address}
-              name="address"
-              placeholder="Your address"
-              onChange={handleChangeDataUpdate}
-            />
-            <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
-          </label>
-          {/* show_address */}
-          <div
-            className="flex gap-2"
-            name="show_address"
-            value={show_address}
-            onChange={handleChangeDataUpdate}
-          >
-            <label htmlFor="">Hiển thị Address: </label>
-            <div className="flex gap-2 items-center">
-              <label for="yes">Có</label>
-              <input
-                type="radio"
-                id="yes"
-                name="show_address"
-                value="true"
-              ></input>
-            </div>
-
-            <div className="flex gap-2 items-center">
-              <label for="No">Không</label>
-              <input
-                type="radio"
-                id="No"
-                name="show_address"
-                value="false"
-              ></input>
-            </div>
-          </div>
-          {/* Birthday  */}
-          <label className="flex gap-2 items-center mt-3 text-2xl">
-            Birthday:{' '}
-            <input
-              className="border-[1px] border-[solid] border-[green]"
-              type="date"
-              value={birthday}
-              name="birthday"
-              placeholder="Your birthday"
-              onChange={handleChangeDataUpdate}
-            />
-            <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
-          </label>
-          {/* show_birthday */}
-          <div
-            className="flex gap-2"
-            name="show_birthday"
-            value={show_birthday}
-            onChange={handleChangeDataUpdate}
-          >
-            <label htmlFor="">Hiển thị Birthday: </label>
-            <div className="flex gap-2 items-center">
-              <label for="yes">Có</label>
-              <input
-                type="radio"
-                id="yes"
+            <div>
+              {/* Birthday  */}
+              <label className="flex gap-2 items-center mt-3 text-2xl">
+                Birthday{' '}
+                <input
+                  className="border-[1px] border-[solid] border-[green]"
+                  type="date"
+                  value={birthday}
+                  name="birthday"
+                  placeholder="Your birthday"
+                  onChange={handleChangeDataUpdate}
+                />
+                <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
+              </label>
+              {/* show_birthday */}
+              <div
+                className="flex gap-2"
                 name="show_birthday"
-                value="true"
-              ></input>
-            </div>
+                value={show_birthday}
+                onChange={handleChangeDataUpdate}
+              >
+                <label htmlFor="">Hiển thị Birthday </label>
+                <div className="flex gap-2 items-center">
+                  <label for="yes">Có</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="show_birthday"
+                    value="true"
+                  ></input>
+                </div>
 
-            <div className="flex gap-2 items-center">
-              <label for="No">Không</label>
-              <input
-                type="radio"
-                id="No"
-                name="show_birthday"
-                value="false"
-              ></input>
-            </div>
-          </div>
-          {/* ProfileDescription */}
-          <label className="flex gap-2 items-center mt-3 text-2xl">
-            ProfileDescription:{' '}
-            <input
-              className="border-[1px] border-[solid] border-[green]"
-              type="text"
-              value={profileDescription}
-              name="profileDescription"
-              placeholder="Your Description"
-              onChange={handleChangeDataUpdate}
-            />
-            <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
-          </label>
-          {/* show_profileDescription */}
-          <div
-            className="flex gap-2"
-            name="show_profile_index"
-            value={show_profile_index}
-            onChange={handleChangeDataUpdate}
-          >
-            <label htmlFor="">Hiển thị ProfileDescription: </label>
-            <div className="flex gap-2 items-center">
-              <label for="yes">Có</label>
-              <input
-                type="radio"
-                id="yes"
+                <div className="flex gap-2 items-center">
+                  <label for="No">Không</label>
+                  <input
+                    type="radio"
+                    id="No"
+                    name="show_birthday"
+                    value="false"
+                  ></input>
+                </div>
+              </div>
+              {/* ProfileDescription */}
+              <label className="flex gap-2 items-center mt-3 text-2xl">
+                ProfileDescription{' '}
+                <input
+                  className="border-[1px] border-[solid] border-[green]"
+                  type="text"
+                  value={profileDescription}
+                  name="profileDescription"
+                  placeholder="Your Description"
+                  onChange={handleChangeDataUpdate}
+                />
+                <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
+              </label>
+              {/* show_profileDescription */}
+              <div
+                className="flex gap-2"
                 name="show_profile_index"
-                value="true"
-              ></input>
-            </div>
+                value={show_profile_index}
+                onChange={handleChangeDataUpdate}
+              >
+                <label htmlFor="">Hiển thị ProfileDescription </label>
+                <div className="flex gap-2 items-center">
+                  <label for="yes">Có</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="show_profile_index"
+                    value="true"
+                  ></input>
+                </div>
 
-            <div className="flex gap-2 items-center">
-              <label for="No">Không</label>
-              <input
-                type="radio"
-                id="No"
-                name="show_profile_index"
-                value="false"
-              ></input>
+                <div className="flex gap-2 items-center">
+                  <label for="No">Không</label>
+                  <input
+                    type="radio"
+                    id="No"
+                    name="show_profile_index"
+                    value="false"
+                  ></input>
+                </div>
+              </div>
             </div>
           </div>
           {/* about */}
           <div>
             <label className="flex gap-2 items-center mt-3 text-2xl">
-              About me:{' '}
+              About me{' '}
             </label>
             <ReactQuill
               modules={modules}

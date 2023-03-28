@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { logout } from '../../store/actions/userActions'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import img from '..//users/avatar.jpg'
+import img from '../../assets/images/defauktAvatar.gif'
 
 const Header = () => {
   const { isAuthenticated, user } = useSelector((state) => state.users)
@@ -21,6 +21,8 @@ const Header = () => {
       navigate('/')
     }
   }
+
+  console.log(img)
 
   return (
     <>
@@ -140,15 +142,15 @@ const Header = () => {
                     <div className="flex items-center h-full">
                       <Link to="/UsersPage">
                         <div className="flex gap-2 mb-2">
-                          {!user?.avatar ? (
+                          {!user?.avatar || !user?.avatar?.url ? (
                             <img
-                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              className="rounded-full object-cover w-full h-full max-w-[2rem] max-h-[2rem]"
                               src={img}
                               alt=""
                             />
                           ) : (
                             <img
-                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              className="rounded-full object-cover max-w-[2rem] max-h-[2rem]"
                               src={
                                 user?.avatar
                                   ? user?.avatar?.url

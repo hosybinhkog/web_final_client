@@ -26,6 +26,11 @@ import {
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_RESET,
   UPDATE_PROFILE_FAILURE,
+  REGISTER_STREAMER_SUCCESS,
+  REGISTER_STREAMER_REQUEST,
+  REGISTER_STREAMER_FAIL,
+  CLEAR_ERRORS_REGISTER_STREAMER,
+  REGISTER_STREAMER_RESET_REGISTER_STREAMER,
 } from './types'
 
 export const login = (email, password) => async (dispatch) => {
@@ -98,6 +103,28 @@ export const register = (username, email, password) => async (dispatch) => {
       payload: error.response.data.message,
     })
   }
+}
+
+export const registerStreamer = (streamerData) => async (dispatch) => {
+  try {
+    dispatch({ type: REGISTER_STREAMER_REQUEST })
+
+    const { data } = await axiosClient.post(
+      `/user/register/streammer/new`,
+      streamerData
+    )
+
+    dispatch({ type: REGISTER_STREAMER_SUCCESS, payload: data.streamer })
+  } catch (error) {
+    dispatch({
+      type: REGISTER_STREAMER_FAIL,
+      payload: error.response.data.message,
+    })
+  }
+}
+
+export const clearErrorsRegisterStreamer = () => async (dispatch) => {
+  dispatch({ type: CLEAR_ERRORS_REGISTER_STREAMER })
 }
 
 export const updatePassword = (password) => async (dispatch) => {

@@ -2,7 +2,7 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import Routers from '../../routers/Routers'
 
-const Layout = () => {
+const Layout = ({ children, bgWhite, wFull }) => {
   return (
     <div className="overflow-x-hidden">
       <div className="fixed top-0 z-20">

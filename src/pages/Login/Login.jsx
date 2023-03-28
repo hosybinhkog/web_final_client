@@ -13,7 +13,9 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
-  const { user, error, loading } = useSelector((state) => state.users)
+  const { user, error, loading, isAuthenticated, success } = useSelector(
+    (state) => state.users
+  )
 
   const navigate = useNavigate()
 
@@ -34,12 +36,12 @@ const Login = () => {
   }
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-      left: 0,
-    })
     if (user && user.email) {
+      toast.success('Register success!')
+      navigate('/')
+    }
+
+    if (success) {
       toast.success('Login success!')
       navigate('/')
     }
