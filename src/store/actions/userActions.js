@@ -93,6 +93,10 @@ export const register = (username, email, password) => async (dispatch) => {
         username,
         email,
         password,
+      },
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
       }
     )
 

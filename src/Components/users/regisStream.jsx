@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import {
-  registerStreamer,
-  clearErrorsRegisterStreamer,
-} from '../../store/actions/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import imgAvatar from '../../assets/images/defauktAvatar.gif'
 import { REGISTER_STREAMER_RESET_REGISTER_STREAMER } from '../../store/actions/types'
+import {
+  clearErrorsRegisterStreamer,
+  loadUser,
+  registerStreamer,
+} from '../../store/actions/userActions'
 
 const RegisStream = () => {
-  const {
-    streamer: streamerSelect,
-    success,
-    error,
-    loading,
-  } = useSelector((state) => state.streamer)
+  const { success, error } = useSelector((state) => state.streamer)
   const { user } = useSelector((state) => state.users)
+  const navigate = useNavigate()
 
   const [imgsStreamerPreview, setImgsStreamerPreview] = useState(imgAvatar)
   const [imgsStreamer, setImgsStreamer] = useState('')
@@ -30,12 +27,10 @@ const RegisStream = () => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [streamer, setStreamer] = useState({
-    displayName: streamerSelect?.displayName,
-    discription: streamerSelect?.discription,
-    // listCategoryStream: streamerSelect?.listCategoryStream,
+    displayName: '',
+    discription: '',
   })
 
   const {
@@ -87,11 +82,9 @@ const RegisStream = () => {
     myForm.set('discription', streamer.discription)
     // myForm.set('listCategoryStream', streamer.listCategoryStream)
     if (imgsStreamer) {
-      console.log('imgsStreamer')
       myForm.set('imgs', imgsStreamer)
     }
     if (thumbnailsStreamer) {
-      console.log('thumbnailsStreamer')
       myForm.set('thumbnails', thumbnailsStreamer)
     }
 
@@ -109,30 +102,16 @@ const RegisStream = () => {
       toast.error(error)
       setErrorMessage(error)
       dispatch(clearErrorsRegisterStreamer())
-      navigate('/regisStream')
     }
     if (success) {
       toast.success('Register Streamer successfully !!!')
       navigate('/usersPage')
+      dispatch(loadUser())
       dispatch({
         type: REGISTER_STREAMER_RESET_REGISTER_STREAMER,
       })
     }
-
-    if (streamerSelect?.displayName) {
-      setStreamer({
-        displayName: streamerSelect.displayName,
-        discription: streamerSelect.discription,
-        // listCategoryStream: streamerSelect.listCategoryStream,
-      })
-      if (streamerSelect.imgs && streamerSelect.imgs.url) {
-        setImgsStreamerPreview(streamerSelect.imgs.url)
-      }
-      if (streamerSelect.thumbnails && streamerSelect.thumbnails.url) {
-        setThumbnailsStreamerPreview(streamerSelect.thumbnails.url)
-      }
-    }
-  }, [error, toast, dispatch, streamerSelect])
+  }, [error, success, dispatch])
 
   return (
     <>
@@ -167,7 +146,6 @@ const RegisStream = () => {
                     name="imgsStreamer"
                     id="imgsStreamer"
                     accept="image/"
-                    placeholder="avatar.jpg"
                     onChange={handleRegisDataStreamer}
                   />
                 </div>
@@ -257,7 +235,7 @@ const RegisStream = () => {
                 <ReactQuill
                   modules={modules}
                   theme="snow"
-                  value={streamer.discription}
+                  value={discription}
                   onChange={onDiscription}
                 />
               </div>
