@@ -4,7 +4,7 @@ import ItemCategoryPage from '../Commom/itemCategoryPage'
 const LiveStreaming = () => {
   return (
     <>
-      <div className="flex min-h-[80vh]">
+      <div className="flex min-h-[80vh] w-full">
         {/* navbar category */}
         <div className="w-2/12 bg-[#1A1A1A] text-gray-200">
           <div className="px-1">

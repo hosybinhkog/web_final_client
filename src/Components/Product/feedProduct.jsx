@@ -18,8 +18,8 @@ const FeedProduct = () => {
             </div>
           </a>
         </div>
-        <div className="flex gap-4 grid flex-wrap grid-cols-5">
-          <ItemProduct />
+        <div className=" gap-4 grid flex-wrap grid-cols-5">
+          {/* <ItemProduct /> */}
         </div>
       </div>
     </>

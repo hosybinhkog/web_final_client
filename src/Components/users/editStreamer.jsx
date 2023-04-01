@@ -4,44 +4,42 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import imgAvatarStreamer from '../../assets/images/defaultAvatarStreamer.png'
-import imgThumbnailStreamer from '../../assets/images/defaultThumbnail.jpg'
-import { REGISTER_STREAMER_RESET_REGISTER_STREAMER } from '../../store/actions/types'
+import { UPDATE_PROFILE_STREAMER_RESET } from '../../store/actions/types'
 import {
   clearErrorsRegisterStreamer,
-  loadUser,
-  registerStreamer,
+  loadStreamer,
+  updateProfileStreamer,
 } from '../../store/actions/userActions'
+import Loading from '../Loading'
 
-const RegisStream = () => {
-  const { success, error } = useSelector((state) => state.streamer)
-  const { user } = useSelector((state) => state.users)
-  const navigate = useNavigate()
-
-  const [imgsStreamerPreview, setImgsStreamerPreview] =
-    useState(imgAvatarStreamer)
+const EditStreamer = () => {
+  const { streamer: streamerSelect, loading } = useSelector(
+    (state) => state.loadStreamer
+  )
+  const { error, isUpdated } = useSelector(
+    (state) => state.updateProfileStreamer
+  )
+  const [imgsStreamerPreview, setImgsStreamerPreview] = useState(
+    streamerSelect?.imgs?.url
+  )
   const [imgsStreamer, setImgsStreamer] = useState('')
-  const [thumbnailsStreamerPreview, setThumbnailsStreamerPreview] =
-    useState(imgThumbnailStreamer)
+  const [thumbnailsStreamerPreview, setThumbnailsStreamerPreview] = useState('')
   const [thumbnailsStreamer, setThumbnailsStreamer] = useState('')
-  const [listCategoryStream, setListCategoryStream] = useState([])
+  // const [listCategoryStream, setListCategoryStream] = useState([])
 
   const [errorMessage, setErrorMessage] = useState('')
 
-  const dispatch = useDispatch()
-
   const [streamer, setStreamer] = useState({
-    displayName: '',
-    discription: '',
+    displayName: streamerSelect?.displayName,
+    discription: streamerSelect?.discription,
   })
 
-  const {
-    displayName,
-    discription,
-    // listCategoryStream
-  } = streamer
+  const { displayName, discription } = streamer
 
-  const handleRegisDataStreamer = (e) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleChangeDataStreamerUpdate = (e) => {
     if (e.target.name === 'thumbnailStreamer') {
       const readerThumbnail = new FileReader()
       readerThumbnail.onload = () => {
@@ -66,19 +64,12 @@ const RegisStream = () => {
     }
   }
 
-  // const handleCheckboxCategoryStreamChange = (event) => {
-  //   const { value, checked } = event.target.value
-  //   if (checked) {
-  //     setListCategoryStream([...listCategoryStream, value])
-  //   } else {
-  //     setListCategoryStream(listCategoryStream.filter((item) => item !== value))
-  //   }
-  // }
-
-  const handleFormSubmitRegisStreamer = async (e) => {
+  const handleFormSubmitUpdateStreamer = async (e) => {
     e.preventDefault()
 
-    const id = toast.loading('Register Streamer...', { position: 'top-center' })
+    const id = toast.loading('Updating Profile Streamer...', {
+      position: 'top-center',
+    })
     const myForm = new FormData()
     myForm.set('displayName', streamer.displayName)
     myForm.set('discription', streamer.discription)
@@ -90,10 +81,12 @@ const RegisStream = () => {
       myForm.set('thumbnails', thumbnailsStreamer)
     }
 
-    await dispatch(registerStreamer(myForm))
+    await dispatch(updateProfileStreamer(myForm))
 
     toast.remove(id)
   }
+
+  const onBlur = () => setErrorMessage('')
 
   const onDiscription = (value) => {
     setStreamer({ ...streamer, discription: value })
@@ -105,36 +98,50 @@ const RegisStream = () => {
       setErrorMessage(error)
       dispatch(clearErrorsRegisterStreamer())
     }
-    if (success) {
-      toast.success('Register Streamer successfully !!!')
-      navigate('/usersPage')
-      dispatch(loadUser())
+    if (isUpdated) {
+      toast.success('Update successfully !!!')
+      navigate('/introduceStreamer')
+      dispatch(loadStreamer())
+
       dispatch({
-        type: REGISTER_STREAMER_RESET_REGISTER_STREAMER,
+        type: UPDATE_PROFILE_STREAMER_RESET,
       })
     }
-  }, [error, success, dispatch])
 
+    if (streamerSelect?.displayName) {
+      setStreamer({
+        displayName: streamerSelect.displayName,
+        discription: streamerSelect.discription,
+      })
+      if (streamerSelect.imgs && streamerSelect.imgs.url) {
+        setImgsStreamerPreview(streamerSelect.imgs.url)
+      }
+      if (streamerSelect.thumbnails && streamerSelect.thumbnails[0].url) {
+        setThumbnailsStreamerPreview(streamerSelect.thumbnails[0].url)
+      }
+    }
+  }, [error, toast, isUpdated, dispatch, streamerSelect])
   return (
     <>
-      {user?._id ? (
+      {loading ? (
+        <Loading />
+      ) : (
         <div>
           <span className="text-3xl font-bold flex items-center justify-center mt-2">
-            Đăng ký để trở thành Streamer
+            Edit Profile Streamer
           </span>{' '}
           <form
-            onSubmit={handleFormSubmitRegisStreamer}
+            onSubmit={handleFormSubmitUpdateStreamer}
             className="text-center p-4 min-h-[80vh] w-[1280px]"
           >
             <div className="flex flex-col gap-1 justify-center">
               {/* avatar Streamer */}
-
               <div className="flex flex-col justify-center items-center">
                 <label
                   className="font-semibold text-2xl max-w-max "
                   htmlFor="avatar"
                 >
-                  Click for Avatar Streamer
+                  Avatar Streamer
                 </label>
                 <div>
                   <form
@@ -151,7 +158,7 @@ const RegisStream = () => {
                         name="imgsStreamer"
                         id="imgsStreamer"
                         accept="image/"
-                        onChange={handleRegisDataStreamer}
+                        onChange={handleChangeDataStreamerUpdate}
                       />
                     </div>
 
@@ -168,12 +175,13 @@ const RegisStream = () => {
                 </div>
               </div>
 
+              {/* thumbnails Streamer */}
               <div className="flex flex-col justify-center items-center">
                 <label
                   className="font-semibold text-2xl max-w-max "
-                  htmlFor="avatar"
+                  htmlFor="thumbnailStreamer"
                 >
-                  Click for Thumbnails Streamer
+                  Thumbnails Streamer
                 </label>
                 <div>
                   <form
@@ -190,7 +198,7 @@ const RegisStream = () => {
                         name="thumbnailStreamer"
                         id="thumbnailsStreamer"
                         accept="image/"
-                        onChange={handleRegisDataStreamer}
+                        onChange={handleChangeDataStreamerUpdate}
                       />
                     </div>
 
@@ -218,7 +226,7 @@ const RegisStream = () => {
                       type="text"
                       value={displayName}
                       placeholder="Your name chanel"
-                      onChange={handleRegisDataStreamer}
+                      onChange={handleChangeDataStreamerUpdate}
                     />
                     <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
                   </label>
@@ -271,14 +279,12 @@ const RegisStream = () => {
               </div>
             </div>
             <div className="flex justify-center font-semibold text-2xl">
-              <button className=" w-56 mt-6 p-2 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer max-w-max">
-                Đăng ký Streamer{' '}
+              <button className=" w-44 mt-6 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer">
+                Cập nhật profile Streamer{' '}
               </button>
             </div>
           </form>
         </div>
-      ) : (
-        <div></div>
       )}
     </>
   )
@@ -303,4 +309,4 @@ const modules = {
   toolbar: toolbarOptions,
 }
 
-export default RegisStream
+export default EditStreamer

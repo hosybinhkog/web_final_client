@@ -2,7 +2,8 @@ import './App.css'
 import { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Layout from './Components/layouts/Layout'
-import { loadUser } from './store/actions/userActions'
+import { loadUser, loadStreamer } from './store/actions/userActions'
+import { loadDataIndex } from './store/actions/dataIndexActions'
 import store from './store/store'
 import Loading from './Components/Loading'
 import { Toaster } from 'react-hot-toast'
@@ -16,8 +17,10 @@ function App() {
     }
   }, [])
 
-  useEffect(() => {
-    store.dispatch(loadUser())
+  useEffect(async () => {
+    await store.dispatch(loadUser())
+    await store.dispatch(loadStreamer())
+    await store.dispatch(loadDataIndex())
   }, [])
 
   if (!hasWindow) {

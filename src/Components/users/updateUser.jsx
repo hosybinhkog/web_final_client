@@ -95,12 +95,11 @@ const UpdateUser = () => {
     myForm.set('show_email', user.show_email)
     myForm.set('show_gender', user.show_gender)
     if (avatar) {
-      console.log('avatar')
       myForm.set('avatar', avatar)
     }
 
     await dispatch(updateProfileUser(myForm))
-    navigate('/usersPage')
+
     toast.remove(id)
   }
 
@@ -119,7 +118,7 @@ const UpdateUser = () => {
     if (isUpdated) {
       toast.success('Update successfully !!!')
       dispatch(loadUser())
-
+      navigate('/usersPage')
       dispatch({
         type: UPDATE_PROFILE_RESET,
       })
@@ -153,33 +152,46 @@ const UpdateUser = () => {
         onSubmit={handleFormSubmitUpdate}
         className="text-center p-4 min-h-[80vh] w-[1280px]"
       >
-        <div className="flex flex-col gap-1 justify-center">
+        <div className="flex flex-col gap-1 justify-center ">
           {/* avatar  */}
-          <div className="flex flex-col justify-center">
-            <label className="font-semibold text-2xl" htmlFor="avatar">
-              Avatar
+          <div className="flex flex-col justify-center items-center">
+            <label
+              className="font-semibold text-2xl max-w-max "
+              htmlFor="avatar"
+            >
+              Click for update Avatar
             </label>
-            <div className="flex justify-center items-center p-2">
-              {avatarPreview && (
-                <img
-                  className="w-[200px] h-[200px] rounded-[50%] object-cover border-[4px] border-[solid] border-[green]"
-                  src={avatarPreview}
-                  alt="Avatar preview"
-                />
-              )}
-            </div>
-            <div className="flex gap-2 justify-center items-center">
-              <input
-                className="border-[1px] border-[solid] border-[green] mt-2 cursor-pointer"
-                type="file"
-                name="avatar"
-                id="avatar"
-                accept="image/"
-                placeholder="avatar.jpg"
-                onChange={handleChangeDataUpdate}
-              />
+            <div>
+              <form
+                action=""
+                onClick={() => document.querySelector('.input-field').click()}
+                className="cursor-pointer max-w-max"
+              >
+                <div className="flex gap-2 justify-center items-center">
+                  <input
+                    className="input-field hidden"
+                    type="file"
+                    name="avatar"
+                    id="avatar"
+                    accept="image/"
+                    placeholder="avatar.jpg"
+                    onChange={handleChangeDataUpdate}
+                  />
+                </div>
+
+                <div className="flex justify-center items-center p-2">
+                  {avatarPreview && (
+                    <img
+                      className="w-[200px] h-[200px] rounded-[50%] object-cover border-[1px] border-[solid] border-[green]"
+                      src={avatarPreview}
+                      alt="Avatar preview"
+                    />
+                  )}
+                </div>
+              </form>
             </div>
           </div>
+
           <div className="flex justify-around">
             <div>
               {/* Username */}
@@ -260,7 +272,7 @@ const UpdateUser = () => {
             </div>
             <div>
               {/* Phone  */}
-              <label className="flex gap-2 items-center mt-3 text-2xl">
+              <label className="flex gap-2 items-center  justify-between mt-3 text-2xl">
                 Phone{' '}
                 <input
                   className="border-[1px] border-[solid] border-[green]"
@@ -274,7 +286,7 @@ const UpdateUser = () => {
               </label>
               {/* show_phone */}
               <div
-                className="flex gap-2"
+                className="flex gap-2  mt-1 justify-between"
                 name="show_phone"
                 value={show_phone}
                 onChange={handleChangeDataUpdate}
@@ -301,7 +313,7 @@ const UpdateUser = () => {
                 </div>
               </div>
               {/* Address */}
-              <label className="flex gap-2 items-center mt-3 text-2xl">
+              <label className="flex gap-2 items-center mt-3 text-2xl justify-between">
                 Address{' '}
                 <input
                   className="border-[1px] border-[solid] border-[green]"
@@ -315,7 +327,7 @@ const UpdateUser = () => {
               </label>
               {/* show_address */}
               <div
-                className="flex gap-2"
+                className="flex gap-2 mt-1 justify-between"
                 name="show_address"
                 value={show_address}
                 onChange={handleChangeDataUpdate}
@@ -344,21 +356,23 @@ const UpdateUser = () => {
             </div>
             <div>
               {/* Birthday  */}
-              <label className="flex gap-2 items-center mt-3 text-2xl">
+              <label className="flex gap-2 items-center mt-1 justify-between text-2xl">
                 Birthday{' '}
-                <input
-                  className="border-[1px] border-[solid] border-[green]"
-                  type="date"
-                  value={birthday}
-                  name="birthday"
-                  placeholder="Your birthday"
-                  onChange={handleChangeDataUpdate}
-                />
+                <div>
+                  <input
+                    className="border-[1px] border-[solid] border-[green]"
+                    type="date"
+                    value={birthday}
+                    name="birthday"
+                    placeholder="Your birthday"
+                    onChange={handleChangeDataUpdate}
+                  />
+                </div>
                 <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
               </label>
               {/* show_birthday */}
               <div
-                className="flex gap-2"
+                className="flex gap-2 mt-1 justify-between"
                 name="show_birthday"
                 value={show_birthday}
                 onChange={handleChangeDataUpdate}
@@ -385,7 +399,7 @@ const UpdateUser = () => {
                 </div>
               </div>
               {/* ProfileDescription */}
-              <label className="flex gap-2 items-center mt-3 text-2xl">
+              <label className="flex gap-2 items-center mt-3 justify-between text-2xl ">
                 ProfileDescription{' '}
                 <input
                   className="border-[1px] border-[solid] border-[green]"
@@ -399,13 +413,13 @@ const UpdateUser = () => {
               </label>
               {/* show_profileDescription */}
               <div
-                className="flex gap-2"
+                className="flex gap-2 mt-1 justify-between"
                 name="show_profile_index"
                 value={show_profile_index}
                 onChange={handleChangeDataUpdate}
               >
                 <label htmlFor="">Hiển thị ProfileDescription </label>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center ">
                   <label for="yes">Có</label>
                   <input
                     type="radio"

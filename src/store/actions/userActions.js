@@ -31,6 +31,17 @@ import {
   REGISTER_STREAMER_FAIL,
   CLEAR_ERRORS_REGISTER_STREAMER,
   REGISTER_STREAMER_RESET_REGISTER_STREAMER,
+  LOAD_STREAMER_REQUEST,
+  LOAD_STREAMER_FAIL,
+  LOAD_STREAMER_SUCCESS,
+  UPDATE_PROFILE_STREAMER_REQUEST,
+  UPDATE_PROFILE_STREAMER_SUCCESS,
+  UPDATE_PROFILE_STREAMER_RESET,
+  UPDATE_PROFILE_STREAMER_FAILURE,
+  LOAD_DATA_REQUEST,
+  LOAD_DATA_SUCCESS,
+  LOAD_DATA_FAIL,
+  CLEAR_LOAD_DATA_FAIL,
 } from './types'
 
 export const login = (email, password) => async (dispatch) => {
@@ -118,7 +129,10 @@ export const registerStreamer = (streamerData) => async (dispatch) => {
       streamerData
     )
 
-    dispatch({ type: REGISTER_STREAMER_SUCCESS, payload: data.streamer })
+    dispatch({
+      type: REGISTER_STREAMER_SUCCESS,
+      payload: data.registerStreammer,
+    })
   } catch (error) {
     dispatch({
       type: REGISTER_STREAMER_FAIL,
@@ -192,6 +206,36 @@ export const updateProfileUser = (userData) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAILURE,
+      payload: error.response.data.message,
+    })
+  }
+}
+
+export const updateProfileStreamer = (streamerData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_STREAMER_REQUEST })
+
+    const { data } = await axiosClient.put(`/user/streammer/me`, streamerData)
+
+    dispatch({ type: UPDATE_PROFILE_STREAMER_SUCCESS, payload: data.success })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_STREAMER_FAILURE,
+      payload: error.response.data.message,
+    })
+  }
+}
+
+export const loadStreamer = () => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_STREAMER_REQUEST })
+
+    const { data } = await axiosClient.get('/user/streammer/me')
+
+    dispatch({ type: LOAD_STREAMER_SUCCESS, payload: data.streammer })
+  } catch (error) {
+    dispatch({
+      type: LOAD_STREAMER_FAIL,
       payload: error.response.data.message,
     })
   }

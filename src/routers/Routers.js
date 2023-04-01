@@ -14,6 +14,11 @@ import ResetPassword from '../pages/reset-password'
 import AboutUser from '../Components/users/aboutUser'
 import ProtectedRoute from '../Components/layouts/auth/protectedRoute'
 import RegisStream from '../Components/users/regisStream'
+import IntroduceStreamer from '../Components/users/introduceStreamer'
+import EditStreamer from '../Components/users/editStreamer'
+import NavbarInforUser from '../Components/Commom/navbarInforUser'
+import FollowerStreamer from '../Components/users/followerStreamer'
+import ItemProduct from '../Components/Commom/itemProduct'
 
 const Routers = () => {
   return (
@@ -21,6 +26,7 @@ const Routers = () => {
       <Route path="/Login" element={<Login />} />
       <Route path="/" element={<Home />} />
       <Route path="/Register" element={<Register />} />
+      <Route path="/navbarInforUser" element={<NavbarInforUser />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/liveShowPage" element={<LiveShowPage />} />
@@ -28,10 +34,14 @@ const Routers = () => {
       <Route path="*" element={<Error404 />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/usersPage" element={<UsersPage />} />
+        <Route path="/itemProduct" element={<ItemProduct />} />
         <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/aboutUser" element={<AboutUser />} />
+        <Route path="/introduceStreamer" element={<IntroduceStreamer />} />
+        <Route path="/editStreamer" element={<EditStreamer />} />
         <Route path="/feedProduct" element={<FeedProduct />} />
         <Route path="/regisStream" element={<RegisStream />} />
+        <Route path="/followerStreamer" element={<FollowerStreamer />} />
       </Route>
     </Routes>
   )

@@ -14,7 +14,7 @@ const ItemCategoryPage = ({ title }) => {
             </div>
           </a>
         </div>
-        <div className="flex gap-4 grid flex-wrap grid-cols-5">
+        <div className=" gap-4 grid flex-wrap grid-cols-5">
           <ItemProduct />
         </div>
       </div>

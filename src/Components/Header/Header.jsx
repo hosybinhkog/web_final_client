@@ -150,7 +150,7 @@ const Header = () => {
                             />
                           ) : (
                             <img
-                              className="rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              className="border-[1px] border-[solid] border-[gray] rounded-[50%] object-cover w-[32px] h-[32px]"
                               src={
                                 user?.avatar
                                   ? user?.avatar?.url
@@ -161,17 +161,7 @@ const Header = () => {
                               alt=""
                             />
                           )}
-                          {/* <img
-                            className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"                   
-                            src={
-                              user?.avatar
-                                ? user?.avatar?.url
-                                : user?.avatar?.url
-                                ? user?.avatar?.url
-                                : null
-                            }
-                            alt=""
-                          /> */}
+
                           <span className="text-white text-xl ">
                             {user.username}
                           </span>
@@ -179,10 +169,10 @@ const Header = () => {
                       </Link>
                     </div>
 
-                    <div className=" invisible opacity-0 absolute right-0 bg-[rgb(35,35,35)]  bg-black rounded-lg w-96 mt-8 flex flex-col gap-2 p-3 group-hover:opacity-100 group-hover:visible group-hover:mt-0">
+                    <div className=" invisible opacity-0 absolute right-0 bg-[rgb(35,35,35)]   rounded-lg w-96 mt-8 flex flex-col gap-2 p-3 group-hover:opacity-100 group-hover:visible group-hover:mt-0">
                       <div className="flex items-center justify-between">
                         <div className="flex gap-2 mb-2 items-center  ">
-                          {!user?.avatar ? (
+                          {!user?.avatar || !user?.avatar?.url ? (
                             <img
                               className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
                               src={img}
@@ -190,7 +180,7 @@ const Header = () => {
                             />
                           ) : (
                             <img
-                              className="border rounded-full object-cover max-w-[2rem] max-h-[2rem]"
+                              className="border-[1px] border-[solid] border-[gray] rounded-[50%] object-cover w-[32px] h-[32px]"
                               src={
                                 user?.avatar
                                   ? user?.avatar?.url

@@ -26,6 +26,17 @@ import {
   REGISTER_STREAMER_FAIL,
   REGISTER_STREAMER_RESET_REGISTER_STREAMER,
   CLEAR_ERRORS_REGISTER_STREAMER,
+  LOAD_STREAMER_REQUEST,
+  LOAD_STREAMER_FAIL,
+  LOAD_STREAMER_SUCCESS,
+  UPDATE_PROFILE_STREAMER_REQUEST,
+  UPDATE_PROFILE_STREAMER_SUCCESS,
+  UPDATE_PROFILE_STREAMER_RESET,
+  UPDATE_PROFILE_STREAMER_FAILURE,
+  LOAD_DATA_REQUEST,
+  LOAD_DATA_SUCCESS,
+  LOAD_DATA_FAIL,
+  CLEAR_LOAD_DATA_FAIL,
 } from '../actions/types'
 
 const userReducer = (state = { user: {} }, action) => {
@@ -121,6 +132,38 @@ export const userStreamerReducer = (state = { streamer: {} }, action) => {
   }
 }
 
+export const loadStreamerReducer = (state = { streamer: {} }, action) => {
+  switch (action.type) {
+    case LOAD_STREAMER_REQUEST:
+      return {
+        loading: true,
+        isStreamer: true,
+      }
+    case LOAD_STREAMER_SUCCESS:
+      return {
+        loading: false,
+        streamer: action.payload,
+        success: true,
+        error: null,
+      }
+    case LOAD_STREAMER_FAIL:
+      return {
+        loading: false,
+        streamer: null,
+        error: action.payload,
+        success: false,
+      }
+
+    case CLEAR_ERRORS_REGISTER_STREAMER:
+      return {
+        ...state,
+        error: null,
+      }
+    default:
+      return state
+  }
+}
+
 export default userReducer
 
 export const updateUserReducer = (state = {}, action) => {
@@ -179,5 +222,39 @@ export const forgotPasswordReducer = (state = {}, action) => {
       return {
         ...state,
       }
+  }
+}
+
+export const updateStreamerReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_STREAMER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      }
+
+    case UPDATE_PROFILE_STREAMER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        streamer: action.payload,
+        isUpdated: action.payload,
+      }
+
+    case UPDATE_PROFILE_STREAMER_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+    case UPDATE_PROFILE_STREAMER_RESET:
+      return {
+        ...state,
+        isUpdated: false,
+      }
+
+    default:
+      return state
   }
 }
