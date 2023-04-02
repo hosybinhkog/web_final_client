@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ItemProduct = ({ thumbnailsUrl, displayName, discription, imgsUrl }) => {
+const ItemProduct = ({thumbnailsUrl, displayName, discription, imgsUrl, title}) => {
   return (
     <>
       <div className="">
@@ -12,9 +12,9 @@ const ItemProduct = ({ thumbnailsUrl, displayName, discription, imgsUrl }) => {
               alt=""
             />
           </a>
-          {/* <span className="rounded-lg px-1 bg-gray-800 absolute left-3 top-3">
-                      {streamer.categoriesStream.title}
-                    </span> */}
+          <span className="rounded-lg px-1 bg-gray-800 absolute left-3 top-3">
+                          {title}
+          </span>
         </div>
         <div>
           <a

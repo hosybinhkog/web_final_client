@@ -1,15 +1,15 @@
 import React from 'react'
-import FeedProduct from '../../Components/Product/feedProduct'
 import Rank from '../../Components/Commom/Rank'
-import { useSelector } from 'react-redux'
+import {useSelector} from 'react-redux'
 import Loading from '../../Components/Loading'
+import FeedCategories from "../../Components/CategoryItem";
 
 const Home = () => {
-  const { loading, data } = useSelector((state) => state.loadDataIndex)
+  const {loading, data} = useSelector((state) => state.loadDataIndex)
   return (
     <>
       {loading ? (
-        <Loading />
+        <Loading/>
       ) : (
         <>
           <div className="min-h-[80vh] bg-black">
@@ -112,16 +112,14 @@ const Home = () => {
               </div>
               {/* Bảng xếp hạng */}
               <div className="">
-                <Rank />
+                <Rank/>
               </div>
             </div>
             {/* LMHT */}
-            <div>{/* <FeedProduct /> */}</div>
+            <div>{data?.categoriesStream &&
+              <FeedCategories categoriesStream={data.categoriesStream} titleCategory={"Categories stream"}/>}</div>
             {/* PUBG */}
             <div>{/* <FeedProduct /> */}</div>
-            <div className="text-white">
-              <p>{JSON.stringify(data)}</p>
-            </div>
           </div>
         </>
       )}
