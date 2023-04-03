@@ -4,7 +4,7 @@ import Routers from '../../routers/Routers'
 
 const Layout = ({ children, bgWhite, wFull }) => {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden ">
       <div className="fixed top-0 z-20">
         <Header />
       </div>

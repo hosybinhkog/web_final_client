@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemProduct from '../Commom/itemProduct'
+import ItemProduct from '../CategoryItem/components/itemProduct'
 
 const ItemCategoryPage = ({ title }) => {
   return (

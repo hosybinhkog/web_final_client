@@ -1,20 +1,28 @@
 import React from 'react'
+import img from '../../../assets/images/defaultThumbnail.jpg'
 
-const ItemProduct = ({thumbnailsUrl, displayName, discription, imgsUrl, title}) => {
+const ItemProduct = ({
+  thumbnailsUrl,
+  displayName,
+  discription,
+  imgsUrl,
+  title,
+}) => {
   return (
     <>
-      <div className="">
-        <div className="relative">
+      <div className="bg-[#1A1A1A] rounded-xl">
+        <div className="">
           <a href="/">
             <img
-              className="object-cover rounded-lg relative"
+              className="object-cover rounded-lg w-[347px] h-[195px]"
+              // src={thumbnailsUrl ? { thumbnailsUrl } : img}
               src={thumbnailsUrl}
               alt=""
             />
           </a>
-          <span className="rounded-lg px-1 bg-gray-800 absolute left-3 top-3">
-                          {title}
-          </span>
+          {/* <span className="rounded-lg px-1 bg-gray-800 absolute left-3 top-3">
+            {title}
+          </span> */}
         </div>
         <div>
           <a
@@ -23,7 +31,7 @@ const ItemProduct = ({thumbnailsUrl, displayName, discription, imgsUrl, title}) 
           >
             <div className="">
               <img
-                className="border rounded-full object-cover w-16"
+                className=" border-[1px] border-[solid] border-[green] rounded-[50%] object-cover w-[58px] h-[48px]"
                 src={imgsUrl}
                 alt=""
               />
@@ -31,7 +39,10 @@ const ItemProduct = ({thumbnailsUrl, displayName, discription, imgsUrl, title}) 
             <div className="flex flex-col gap-2 w-full text-white font-bold">
               <a href="/">
                 {' '}
-                <span className="hover:text-blue-700">{discription}</span>
+                <span
+                  className="hover:text-blue-700 line-clamp-2"
+                  dangerouslySetInnerHTML={{ __html: discription }}
+                ></span>
               </a>
               <div className="flex justify-between text-gray-500">
                 <span className="text-xs">{displayName}</span>

@@ -18,7 +18,7 @@ import IntroduceStreamer from '../Components/users/introduceStreamer'
 import EditStreamer from '../Components/users/editStreamer'
 import NavbarInforUser from '../Components/Commom/navbarInforUser'
 import FollowerStreamer from '../Components/users/followerStreamer'
-import ItemProduct from '../Components/Commom/itemProduct'
+import ItemProduct from '../Components/CategoryItem/components/itemProduct'
 
 const Routers = () => {
   return (
