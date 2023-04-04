@@ -1,13 +1,10 @@
 import React from 'react'
-import img from '../../../assets/images/defaultThumbnail.jpg'
+import avatarDefault from '../../../.././assets/images/defaultAvatarStreamer.png'
+import { useSelector } from 'react-redux'
 
-const ItemProduct = ({
-  thumbnailsUrl,
-  displayName,
-  discription,
-  imgsUrl,
-  title,
-}) => {
+const ItemStream = ({ thumbnailsUrl, description, title }) => {
+  const { streamer } = useSelector((state) => state.loadStreamer)
+
   return (
     <>
       <div className="bg-[#1A1A1A] rounded-xl">
@@ -15,7 +12,7 @@ const ItemProduct = ({
           <a href="/">
             <img
               className="object-cover rounded-lg w-[347px] h-[195px]"
-              // src={thumbnailsUrl ? { thumbnailsUrl } : img}
+              //   src={thumbnailsUrl ? { thumbnailsUrl } : avatarDefault}
               src={thumbnailsUrl}
               alt=""
             />
@@ -32,7 +29,8 @@ const ItemProduct = ({
             <div className="">
               <img
                 className=" border-[1px] border-[solid] border-[green] rounded-[50%] object-cover w-[58px] h-[48px]"
-                src={imgsUrl}
+                // src={avatarDefault}
+                src={streamer?.imgs?.url}
                 alt=""
               />
             </div>
@@ -41,11 +39,11 @@ const ItemProduct = ({
                 {' '}
                 <span
                   className="hover:text-blue-700 line-clamp-2"
-                  dangerouslySetInnerHTML={{ __html: discription }}
+                  dangerouslySetInnerHTML={{ __html: description }}
                 ></span>
               </a>
               <div className="flex justify-between text-gray-500">
-                <span className="text-xs">{displayName}</span>
+                <span className="text-xs">{title}</span>
                 {/* <div className=" flex gap-1 items-center">
                       <i class="fa-solid fa-users"></i>
                       <span>{product.viewer}k</span>
@@ -59,4 +57,4 @@ const ItemProduct = ({
   )
 }
 
-export default ItemProduct
+export default ItemStream

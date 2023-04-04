@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Layout from './Components/layouts/Layout'
 import { loadUser, loadStreamer } from './store/actions/userActions'
 import { loadDataIndex } from './store/actions/dataIndexActions'
+import { loadDataStream } from './store/actions/dataStreamActions'
 import store from './store/store'
 import Loading from './Components/Loading'
 import { Toaster } from 'react-hot-toast'
@@ -21,6 +22,7 @@ function App() {
     await store.dispatch(loadUser())
     await store.dispatch(loadStreamer())
     await store.dispatch(loadDataIndex())
+    await store.dispatch(loadDataStream())
   }, [])
 
   if (!hasWindow) {

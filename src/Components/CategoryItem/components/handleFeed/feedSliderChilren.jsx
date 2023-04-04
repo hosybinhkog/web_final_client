@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemSliderChilren from './itemSliderChilren'
+import ItemSliderChilren from '../handleItem/itemSliderChilren'
 
 const FeedSliderChilren = ({ streammers }) => {
   return (

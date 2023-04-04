@@ -3,13 +3,15 @@ import Rank from '../../Components/Commom/Rank'
 import { useSelector } from 'react-redux'
 import Loading from '../../Components/Loading'
 import FeedCategories from '../../Components/CategoryItem'
-import FeedStreamer from '../../Components/CategoryItem/components/feedStreamer'
-import FeedTitle from '../../Components/CategoryItem/components/feedTitle'
-import FeedSliderChilren from '../../Components/CategoryItem/components/feedSliderChilren'
-import FeedSlider from '../../Components/CategoryItem/components/feedSlider'
+import FeedTitle from '../../Components/CategoryItem/components/handleFeed/feedTitle'
+import FeedSliderChilren from '../../Components/CategoryItem/components/handleFeed/feedSliderChilren'
+import FeedSlider from '../../Components/CategoryItem/components/handleFeed/feedSlider'
+import PlayButton from '../../Components/Commom/playButton'
+import FeedStream from '../../Components/CategoryItem/components/handleFeed/feedStream'
 
 const Home = () => {
   const { loading, data } = useSelector((state) => state.loadDataIndex)
+  const { stream } = useSelector((state) => state.loadDataStream)
   return (
     <>
       {loading ? (
@@ -21,17 +23,13 @@ const Home = () => {
 
             <div className="bg-[url('/public/banner.jpg')] bg-no-repeat bg-cover h-[750px] overflow-hidden">
               <div className="flex gap-4 justify-center items-center ">
-                <div className="">
+                <div className="relative ">
                   {data?.streammers && (
                     <FeedSlider streammers={data?.streammers} />
                   )}
-
-                  {/* <img
-                    className="h-[750px] py-6 "
-                    src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
-                    alt=""
-                  /> */}
+                  <PlayButton />
                 </div>
+
                 <div className="">
                   {data?.streammers && (
                     <FeedSliderChilren streammers={data?.streammers} />
@@ -102,14 +100,11 @@ const Home = () => {
             </div>
 
             {/* PUBG */}
-            {/* <div>
-              {data?.streammers && (
-                <FeedStreamer
-                  streammers={data.streammers}
-                  titleCategory={'Streamer'}
-                />
+            <div>
+              {stream?.data && (
+                <FeedStream stream={stream.data} titleStream={'Stream'} />
               )}
-            </div> */}
+            </div>
             <div>
               {data?.categoriesStream && (
                 <FeedTitle

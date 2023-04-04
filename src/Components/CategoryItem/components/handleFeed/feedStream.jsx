@@ -1,15 +1,15 @@
 import React from 'react'
-import ItemProduct from './itemProduct'
+import ItemStream from '../handleItem/itemStream'
 
-const FeedStreamer = ({ streammers, titleCategory }) => {
+const FeedStream = ({ stream, titleStream }) => {
   return (
     <>
       <div className="bg-black text-white px-6">
-        <div>
+        <div className="max-w-max">
           <a href="/">
             <div className="flex gap-2 py-4 ">
               <span className="text-3xl font-bold  hover:text-gray-500">
-                {titleCategory}
+                {titleStream}
               </span>
               <div className="flex gap-1 text-gray-400 text-base">
                 <span>Thêm</span>
@@ -19,20 +19,22 @@ const FeedStreamer = ({ streammers, titleCategory }) => {
           </a>
         </div>
         <div className=" gap-4 grid flex-wrap grid-cols-5">
-          {streammers?.map((item) => (
-            <ItemProduct
-              key={item._id}
-              title={item.title}
-              discription={item.discription}
-              displayName={item.displayName}
-              imgsUrl={item.imgs.url}
-              thumbnailsUrl={item.thumbnails[0].url}
-            />
-          ))}
+          {stream?.map((item) =>
+            item.status ? (
+              <ItemStream
+                key={item.userId}
+                description={item.description}
+                title={item.title}
+                thumbnailsUrl={item.thumbnail?.url}
+              />
+            ) : (
+              <div className="hidden"></div>
+            )
+          )}
         </div>
       </div>
     </>
   )
 }
 
-export default FeedStreamer
+export default FeedStream

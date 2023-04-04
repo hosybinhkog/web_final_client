@@ -6,8 +6,11 @@ import { logout } from '../../store/actions/userActions'
 import { toast } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import img from '../../assets/images/defauktAvatar.gif'
+import CategorisStreamHeader from '../CategoryItem/components/handleItem/categorisStreamHeader'
 
 const Header = () => {
+  const { data } = useSelector((state) => state.loadDataIndex)
+
   const { isAuthenticated, user } = useSelector((state) => state.users)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -43,9 +46,24 @@ const Header = () => {
                 <Link to="/LiveShowPage">
                   <li className="hover:text-white">Nimo Show</li>
                 </Link>
-                <Link to="/">
+                <Link to="/pageCategorisStream">
                   <li className="hover:text-white">
-                    Game <i class="fa-solid fa-chevron-down"></i>
+                    <div className=" relative group ">
+                      <div className="flex items-center h-full">
+                        <li className=" hover:text-white cursor-pointer">
+                          Game <i class="fa-solid fa-chevron-down"></i>
+                        </li>
+                      </div>
+
+                      <div className="invisible opacity-0 absolute  transform -translate-x-1/2  bg-black rounded-lg w-[500px]  max-w-max mt-8 flex flex-col gap-2 p-3 group-hover:opacity-100 group-hover:visible group-hover:mt-0">
+                        <span>Hot</span>
+                        {data?.categoriesStream && (
+                          <CategorisStreamHeader
+                            categoriesStream={data?.categoriesStream}
+                          />
+                        )}
+                      </div>
+                    </div>
                   </li>
                 </Link>
                 <Link to="/">

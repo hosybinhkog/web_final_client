@@ -18,7 +18,9 @@ import IntroduceStreamer from '../Components/users/introduceStreamer'
 import EditStreamer from '../Components/users/editStreamer'
 import NavbarInforUser from '../Components/Commom/navbarInforUser'
 import FollowerStreamer from '../Components/users/followerStreamer'
-import ItemProduct from '../Components/CategoryItem/components/itemProduct'
+import ItemProduct from '../Components/CategoryItem/components/handleItem/itemProduct'
+import PlayButton from '../Components/Commom/playButton'
+import PageCategorisStream from '../Components/categoryPage/pageCategorisStream'
 
 const Routers = () => {
   return (
@@ -42,6 +44,9 @@ const Routers = () => {
         <Route path="/feedProduct" element={<FeedProduct />} />
         <Route path="/regisStream" element={<RegisStream />} />
         <Route path="/followerStreamer" element={<FollowerStreamer />} />
+        <Route path="/followerStreamer" element={<FollowerStreamer />} />
+        <Route path="/playButton" element={<PlayButton />} />
+        <Route path="/pageCategorisStream" element={<PageCategorisStream />} />
       </Route>
     </Routes>
   )

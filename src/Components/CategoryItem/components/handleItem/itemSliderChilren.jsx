@@ -4,7 +4,7 @@ const ItemSliderChilren = ({ thumbnailsUrlChilren }) => {
   return (
     <>
       <div className="max-w-max py-2">
-        <a className="  " href="/">
+        <a className="" href="/">
           <img
             className="bg-[#1A1A1A]  rounded-xl mb-2 object-cover  w-[196px] h-[120px] "
             src={thumbnailsUrlChilren}

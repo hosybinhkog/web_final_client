@@ -11,7 +11,7 @@ import userReducer, {
   updateStreamerReducer,
 } from './reducers/userReducer'
 import { getDataIndexReducer } from './reducers/dataIndexReducer'
-
+import { getDataStreamReducer } from './reducers/dataStreamReducer'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
@@ -25,6 +25,7 @@ const reducers = combineReducers({
   loadStreamer: loadStreamerReducer,
   updateProfileStreamer: updateStreamerReducer,
   loadDataIndex: getDataIndexReducer,
+  loadDataStream: getDataStreamReducer,
 })
 
 const middleware = [thunk]
