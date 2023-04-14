@@ -9,6 +9,7 @@ import store from './store/store'
 import Loading from './Components/Loading'
 import { Toaster } from 'react-hot-toast'
 import ProtectedRoute from './Components/layouts/auth/protectedRoute'
+import { HMSRoomProvider } from '@100mslive/react-sdk'
 
 function App() {
   const [hasWindow, setHasWindow] = useState(false)
@@ -32,8 +33,10 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Toaster duration="500" position="top-center" />
-        <Layout />
+      <HMSRoomProvider>
+          <Toaster duration="500" position="top-center" />
+          <Layout />
+        </HMSRoomProvider>
       </BrowserRouter>
     </div>
   )

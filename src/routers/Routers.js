@@ -21,6 +21,10 @@ import FollowerStreamer from '../Components/users/followerStreamer'
 import ItemProduct from '../Components/CategoryItem/components/handleItem/itemProduct'
 import PlayButton from '../Components/Commom/playButton'
 import PageCategorisStream from '../Components/categoryPage/pageCategorisStream'
+import JoinRoom from '../pages/Stream/JoinRoom'
+import CreateRoom from '../pages/Stream/CreateRoom'
+import StreambyStreeamer from '../pages/Stream/StreambyStreeamer'
+
 
 const Routers = () => {
   return (
@@ -47,6 +51,9 @@ const Routers = () => {
         <Route path="/followerStreamer" element={<FollowerStreamer />} />
         <Route path="/playButton" element={<PlayButton />} />
         <Route path="/pageCategorisStream" element={<PageCategorisStream />} />
+        <Route path="joinroom" element={<JoinRoom />} />
+        <Route path="createroom" element={<CreateRoom />} />
+        <Route path="streaming" element={<StreambyStreeamer />} />
       </Route>
     </Routes>
   )

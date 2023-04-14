@@ -26,6 +26,7 @@ const FeedStream = ({ stream, titleStream }) => {
                 description={item.description}
                 title={item.title}
                 thumbnailsUrl={item.thumbnail?.url}
+                roomid={item.room_id}
               />
             ) : (
               <div className="hidden"></div>

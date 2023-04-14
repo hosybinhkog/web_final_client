@@ -2,14 +2,14 @@ import React from 'react'
 import avatarDefault from '../../../.././assets/images/defaultAvatarStreamer.png'
 import { useSelector } from 'react-redux'
 
-const ItemStream = ({ thumbnailsUrl, description, title }) => {
+const ItemStream = ({ roomid, thumbnailsUrl, description, title }) => {
   const { streamer } = useSelector((state) => state.loadStreamer)
 
   return (
     <>
       <div className="bg-[#1A1A1A] rounded-xl">
         <div className="">
-          <a href="/">
+          <a href={`http://localhost:3000/joinroom?streamid=${roomid}`}>
             <img
               className="object-cover rounded-lg w-[347px] h-[195px]"
               //   src={thumbnailsUrl ? { thumbnailsUrl } : avatarDefault}
