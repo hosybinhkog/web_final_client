@@ -24,6 +24,7 @@ import PageCategorisStream from '../Components/categoryPage/pageCategorisStream'
 import JoinRoom from '../pages/Stream/JoinRoom'
 import CreateRoom from '../pages/Stream/CreateRoom'
 import StreambyStreeamer from '../pages/Stream/StreambyStreeamer'
+import Videos from '../pages/Videos/Videos'
 
 
 const Routers = () => {
@@ -54,6 +55,7 @@ const Routers = () => {
         <Route path="joinroom" element={<JoinRoom />} />
         <Route path="createroom" element={<CreateRoom />} />
         <Route path="streaming" element={<StreambyStreeamer />} />
+        <Route path="videos" element={<Videos />} />
       </Route>
     </Routes>
   )

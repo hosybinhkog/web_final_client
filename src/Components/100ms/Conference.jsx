@@ -2,7 +2,7 @@ import {
   selectPeers,
   useHMSStore,
   selectRecordingState,
-  selectRTMPState,
+  selectRTMPState,selectRoom
 } from '@100mslive/react-sdk'
 import { useRecordingStreaming, useHMSActions } from '@100mslive/react-sdk'
 import React from 'react'
@@ -21,13 +21,10 @@ function Conference() {
     console.error(error)
   }
 
-  // const audioTrack = useHMSStore(selectScreenShareAudioByPeerID(peer?.id))
-
   const {
     amIScreenSharing,
     toggleScreenShare,
     screenSharingPeerName,
-    screenShareAudioTrackId,
   } = useScreenShare(handleError)
 
   const handleToggle = async () => {
@@ -41,13 +38,7 @@ function Conference() {
   const hmsActions = useHMSActions()
 
   const {
-    isServerRecordingOn,
     isBrowserRecordingOn,
-    isHLSRecordingOn,
-    isStreamingOn,
-    isHLSRunning,
-    isRTMPRunning,
-    isRecordingOn,
   } = useRecordingStreaming()
 
   const recordingState = useHMSStore(selectRecordingState)
@@ -57,12 +48,13 @@ function Conference() {
     const params = {
       operation: 'start',
       meetingURL:
-        'https://monsterofdarkness.app.100ms.live/meeting/pjc-cnhi-cvy',
+        'https://monsterofdarkness.app.100ms.live/preview/pjc-cnhi-cvy?skip_preview=true',
       record: true,
     }
     try {
       await hmsActions.startRTMPOrRecording(params)
       console.log('is sfu recording going on - ', recordingState.server.running)
+      console.log(recordingState)
       console.log(isBrowserRecordingOn)
 
       if (recordingState.browser.running) {
@@ -137,7 +129,6 @@ function Conference() {
                             className="fa-window-close bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded text-orange-100 transition duration-500"
                             onClick={handleToggle}
                           >
-                            {/* Stop sharing */}
                           </button>
                         </div>
                       ) : (
@@ -146,7 +137,6 @@ function Conference() {
                             className="fa fa-desktop bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded text-orange-100 transition duration-500"
                             onClick={handleToggle}
                           >
-                            {/* Start sharing */}
                           </button>
                         </div>
                       )}
@@ -168,22 +158,7 @@ function Conference() {
                         Record
                       </button>
                       {/* )} */}
-                      {/* <div>
-                    <button
-                      className="bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded-full text-orange-100 transition duration-500"
-                      onClick={handleStartRecording}
-                    >
-                      Start Recording
-                    </button>
-                    <button
-                      className="bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded-full text-orange-100 transition duration-500"
-                      onClick={handleStopRecording}
-                    >
-                      Stop Recording
-                    </button>
-                  </div> */}
                       <EndRoomButton />
-                      {/* <button class="rounded-md bg-red-500 px-4 py-2 text-white" >END</button> */}
                     </div>
                   ) : (
                     <></>

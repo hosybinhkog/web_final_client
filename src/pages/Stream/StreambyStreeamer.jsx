@@ -21,10 +21,10 @@ const StreambyStreeamer = () => {
         hmsActions.leave()
       }
     }
-  }, [hmsActions])
+  }, [isConnected, hmsActions])
 
   return (
-    <div className="min-h-100 min-w-100 mt-10 ml-20 bg-black">
+    <div className="min-h-100 min-w-100 bg-black">
       {isConnected ? (
         <div className="flex flex-col gap-4  ">
           <TitleStream/>

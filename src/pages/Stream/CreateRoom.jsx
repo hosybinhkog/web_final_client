@@ -3,13 +3,14 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axiosClient from '../../apis'
+import { useNavigate } from 'react-router-dom'
 
 function CreateRoom() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [templateId, setTemplateId] = useState('')
   const [thumbnail, setThumbnail] = useState('')
-
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -35,7 +36,7 @@ function CreateRoom() {
         },
       )
 
-      window.location.href = `http://localhost:3000/streaming?streamid=${response.data.id}`
+      navigate(`/streaming?streamid=${response.data.id}`)
     } catch (error) {
       console.error('Error creating new room:', error)
       // Show error message and clear input fields
