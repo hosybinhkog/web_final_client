@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ButtonSubmit = ({ titleButton }) => {
+const ButtonSubmit = ({ titleButton, cssButton }) => {
   return (
     <>
-      <div className="button-submit">
+      <div className={`${cssButton}`}>
         <button>{titleButton}</button>
       </div>
     </>

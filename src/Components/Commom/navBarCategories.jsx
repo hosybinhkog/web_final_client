@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const NavBarCategories = () => {
   return (
@@ -85,12 +86,24 @@ const NavBarCategories = () => {
               <span>Sảnh Danh Vọng</span>
             </div>
           </a>
-          <a href="/">
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? '#6C47FF' : '',
+                width: isActive ? '100%' : '',
+                display: isActive ? 'inline-block' : '',
+                borderRadius: isActive ? '8px' : '',
+                color: isActive ? 'white' : '',
+                fontWeight: isActive ? 'bold' : '',
+              }
+            }}
+            to="/pageCategorisStream"
+          >
             <div className="flex gap-3 text-lg font-semibold items-center hover:bg-zinc-500 hover:rounded-lg py-3">
               <i class="fa-solid fa-gamepad"></i>
               <span>Game</span>
             </div>
-          </a>
+          </NavLink>
         </div>
         <div className="p-2 rounded-md bg-zinc-700 mt-4">
           <div className="">
@@ -152,7 +165,7 @@ const NavBarCategories = () => {
                 className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
               >
                 <div className="flex flex-col gap-2 ">
-                  <span>NimoShow</span>
+                  <span>PBAShow</span>
                 </div>
               </a>
             </div>

@@ -2,16 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import thumbnail from '../../assets/images/defaultThumbnail.jpg'
 import { Link } from 'react-router-dom'
+import Loading from '../Loading'
 
 const IntroduceStreamer = () => {
-  const { streamer } = useSelector((state) => state.loadStreamer)
-  console.log(streamer)
+  const { streamer, loading } = useSelector((state) => state.loadStreamer)
+  
   const { user } = useSelector((state) => state.users)
-
+  if (loading) return <Loading />
   return (
     <>
       {user && user.isStreammer ? (
-        <div className="flex flex-col ">
+        <div className="flex flex-col max-w-[1280px] ">
           <div className=" ">
             {!streamer?.thumbnails ? (
               <img className=" object-cover w-full" src={thumbnail} alt="" />

@@ -21,6 +21,17 @@ import FollowerStreamer from '../Components/users/followerStreamer'
 import ItemProduct from '../Components/CategoryItem/components/handleItem/itemProduct'
 import PlayButton from '../Components/Commom/playButton'
 import PageCategorisStream from '../Components/categoryPage/pageCategorisStream'
+import PostMe from '../Components/users/postMe'
+import Blog from '../pages/Blog'
+import CreatePost from '../Components/users/createPost'
+import DetailPost from '../pages/Blog/detail'
+import DetailDiamondPage from '../Components/users/detailDiamondPage'
+import ReportBlog from '../pages/Blog/reportBlog'
+import FeedItemAllPost from '../Components/CategoryItem/components/handleFeed/feedItemAllPost'
+import FeedItemCategoriesAllPost from '../Components/CategoryItem/components/handleFeed/feedItemCategoriesPost'
+import ModalNoti from '../Components/Commom/modalNoti'
+import PublicIntroduceStream from '../pages/publicIntroduceStream'
+import Cloudari from '../Components/Commom/cloudari'
 
 const Routers = () => {
   return (
@@ -33,6 +44,17 @@ const Routers = () => {
       <Route path="/reset-password/:token" element={<ResetPassword />} />
       <Route path="/liveShowPage" element={<LiveShowPage />} />
       <Route path="/liveStreaming" element={<LiveStreaming />} />
+      <Route path="/404" element={<Error404 />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:id" element={<DetailPost />} />
+      <Route path="/blog/:id/reportBlog/:id" element={<ReportBlog />} />
+      <Route path="/feedItemAllPost" element={<FeedItemAllPost />} />
+      <Route
+        path="/feedItemCategoriesPost"
+        element={<FeedItemCategoriesAllPost />}
+      />
+      <Route path="/modalNoti" element={<ModalNoti />} />
+      <Route path="/cloudari" element={<Cloudari />} />
       <Route path="*" element={<Error404 />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/usersPage" element={<UsersPage />} />
@@ -40,13 +62,19 @@ const Routers = () => {
         <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/aboutUser" element={<AboutUser />} />
         <Route path="/introduceStreamer" element={<IntroduceStreamer />} />
+        <Route
+          path="/publicIntroduceStream/:id"
+          element={<PublicIntroduceStream />}
+        />
         <Route path="/editStreamer" element={<EditStreamer />} />
         <Route path="/feedProduct" element={<FeedProduct />} />
         <Route path="/regisStream" element={<RegisStream />} />
         <Route path="/followerStreamer" element={<FollowerStreamer />} />
-        <Route path="/followerStreamer" element={<FollowerStreamer />} />
+        <Route path="/detailDiamondPage" element={<DetailDiamondPage />} />
         <Route path="/playButton" element={<PlayButton />} />
         <Route path="/pageCategorisStream" element={<PageCategorisStream />} />
+        <Route path="/postMe" element={<PostMe />} />
+        <Route path="/createPost" element={<CreatePost />} />
       </Route>
     </Routes>
   )

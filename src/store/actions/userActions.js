@@ -42,6 +42,16 @@ import {
   LOAD_DATA_SUCCESS,
   LOAD_DATA_FAIL,
   CLEAR_LOAD_DATA_FAIL,
+  GET_STREAMER_INTRODUCE_REQUEST,
+  GET_STREAMER_INTRODUCE_SUCCESS,
+  GET_STREAMER_INTRODUCE_FAIL,
+  CLEAR_GET_STREAMER_INTRODUCE_FAIL,
+  CLEAR_GET_STREAMER_INTRODUCE_SUCCESS,
+  FOLLOW_STREAMER_REQUEST,
+  FOLLOW_STREAMER_SUCCESS,
+  FOLLOW_STREAMER_FAIL,
+  CLEAR_FOLLOW_STREAMER_FAIL,
+  RESET_FOLLOW_STREAMER_SUCCESS,
 } from './types'
 
 export const login = (email, password) => async (dispatch) => {
@@ -237,6 +247,53 @@ export const loadStreamer = () => async (dispatch) => {
     dispatch({
       type: LOAD_STREAMER_FAIL,
       payload: error.response.data.message,
+    })
+  }
+}
+
+export const getIntroduceStreamerById = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_STREAMER_INTRODUCE_REQUEST })
+
+    const { data } = await axiosClient.get(`/streammer/${id}`)
+
+    dispatch({ type: GET_STREAMER_INTRODUCE_SUCCESS, payload: data.streammer })
+  } catch (error) {
+    dispatch({
+      type: GET_STREAMER_INTRODUCE_FAIL,
+      payload: error.response.data.message,
+    })
+  }
+}
+
+export const clearIntroduceStreamerSuccess = () => async (dispatch) => {
+  dispatch({ type: CLEAR_GET_STREAMER_INTRODUCE_SUCCESS })
+}
+
+export const clearErrorsFollowAndUnFollowStreamer = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_FOLLOW_STREAMER_FAIL,
+  })
+}
+
+export const clearFollowAndUnFollowStreamerSuccess = () => async (dispatch) => {
+  dispatch({
+    type: RESET_FOLLOW_STREAMER_SUCCESS,
+  })
+}
+
+export const followStreamer = (streamerId) => async (dispatch) => {
+  try {
+    dispatch({ type: FOLLOW_STREAMER_REQUEST })
+
+    const { data } = await axiosClient.post(`/user/unOrAddFollow`, {
+      streamerId,
+    })
+    dispatch({ type: FOLLOW_STREAMER_SUCCESS, payload: data.success })
+  } catch (error) {
+    dispatch({
+      type: FOLLOW_STREAMER_FAIL,
+      payload: error?.response?.data?.message,
     })
   }
 }

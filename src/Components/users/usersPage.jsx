@@ -120,7 +120,7 @@ const UsersPage = () => {
               {user?.cost}
             </span>
             <Link to="/updateUser">
-              <button className="flex justify-center w-44 mt-6 px-4 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer max-w-max">
+              <button className="flex justify-center w-44 mt-6 p-2 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer max-w-max">
                 Cập nhật tài khoản
               </button>
             </Link>

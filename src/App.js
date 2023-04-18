@@ -8,7 +8,8 @@ import { loadDataStream } from './store/actions/dataStreamActions'
 import store from './store/store'
 import Loading from './Components/Loading'
 import { Toaster } from 'react-hot-toast'
-import ProtectedRoute from './Components/layouts/auth/protectedRoute'
+import { loadDataAllPost } from './store/actions/postActions'
+import { loadCategoriesPost } from './store/actions/postActions'
 
 function App() {
   const [hasWindow, setHasWindow] = useState(false)
@@ -23,6 +24,8 @@ function App() {
     await store.dispatch(loadStreamer())
     await store.dispatch(loadDataIndex())
     await store.dispatch(loadDataStream())
+    await store.dispatch(loadCategoriesPost())
+    await store.dispatch(loadDataAllPost())
   }, [])
 
   if (!hasWindow) {

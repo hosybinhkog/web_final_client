@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const ItemProduct = ({
   thumbnailsUrl,
@@ -6,6 +7,7 @@ const ItemProduct = ({
   discription,
   imgsUrl,
   title,
+  id,
 }) => {
   return (
     <>
@@ -24,17 +26,16 @@ const ItemProduct = ({
           </span> */}
         </div>
         <div>
-          <a
-            href="/"
-            className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
-          >
-            <div className="">
-              <img
-                className=" border-[1px] border-[solid] border-[green] rounded-[50%] object-cover w-[58px] h-[48px]"
-                src={imgsUrl}
-                alt=""
-              />
-            </div>
+          <div className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1">
+            <NavLink to={`/publicIntroduceStream/${id}`}>
+              <div className="">
+                <img
+                  className=" border-[1px] border-[solid] border-[green] rounded-[50%] object-cover w-[58px] h-[48px]"
+                  src={imgsUrl}
+                  alt=""
+                />
+              </div>
+            </NavLink>
             <div className="flex flex-col gap-2 w-full text-white font-bold">
               <a href="/">
                 {' '}
@@ -51,7 +52,7 @@ const ItemProduct = ({
                     </div> */}
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </>

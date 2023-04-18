@@ -19,18 +19,21 @@ const FeedStream = ({ stream, titleStream }) => {
           </a>
         </div>
         <div className=" gap-4 grid flex-wrap grid-cols-5">
-          {stream?.map((item) =>
-            item.status ? (
-              <ItemStream
-                key={item.userId}
-                description={item.description}
-                title={item.title}
-                thumbnailsUrl={item.thumbnail?.url}
-              />
-            ) : (
-              <div className="hidden"></div>
-            )
-          )}
+          {stream
+            ?.slice(0, 10)
+            .map((item) =>
+              item.status ? (
+                <ItemStream
+                  key={item.userId}
+                  description={item.description}
+                  title={item.title}
+                  thumbnailsUrl={item.thumbnail?.url}
+                  avatarStreamer={item.avatarStreamer?.url}
+                />
+              ) : (
+                <div className="hidden"></div>
+              )
+            )}
         </div>
       </div>
     </>

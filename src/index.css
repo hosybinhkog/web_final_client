@@ -9,4 +9,10 @@
   .button-submit {
     @apply border rounded-lg px-2 mb-2 hover:text-white hover:bg-sky-600;
   }
+  .button-create {
+    @apply flex justify-center w-44 mt-6 p-2 bg-sky-500 rounded-md hover:bg-sky-300 cursor-pointer mx-auto text-white  text-xl font-bold mb-4;
+  }
+  .button-report {
+    @apply flex justify-center w-44 mt-6 p-2 bg-[rgb(241,42,59)] rounded-md hover:bg-[rgba(241,42,59,.8)] cursor-pointer mx-auto text-white  text-xl font-bold mb-4;
+  }
 }

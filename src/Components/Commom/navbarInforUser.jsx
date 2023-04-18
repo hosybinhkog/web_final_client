@@ -1,46 +1,79 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useState } from 'react'
 
 const NavbarInforUser = () => {
-  //   const [activeClick, setActiveClick] = useState(false)
-  //   const handleClick = () => {
-  //     setActiveClick((activeClick) => !activeClick)
-  //   }
-
-  //   const toggleClassCheck = activeClick ? 'bg-red-500' : ''
   return (
     <>
       <div className="w-2/12 bg-[rgb(35,35,35)] text-[#5A5A5A] flex flex-col px-6 ">
         <span className="text-white text-xl mt-9 mb-2">Trung tâm cá nhân</span>
         <div className="">
           {/* inforUsers */}
-          <Link to="/usersPage">
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? '#6C47FF' : '',
+                width: isActive ? '100%' : '',
+                display: isActive ? 'inline-block' : '',
+                borderRadius: isActive ? '8px' : '',
+                color: isActive ? 'white' : '',
+                fontWeight: isActive ? 'bold' : '',
+              }
+            }}
+            to="/usersPage"
+          >
             <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
               <div className="flex gap-3 items-center pl-2 ">
                 <i class="fa-solid fa-user"></i>
                 <span>Thông tin của tôi</span>
               </div>
             </div>
-          </Link>
+          </NavLink>
 
           {/* Follower */}
-          <Link to="/followerStreamer">
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? '#6C47FF' : '',
+                width: isActive ? '100%' : '',
+                display: isActive ? 'inline-block' : '',
+                borderRadius: isActive ? '8px' : '',
+                color: isActive ? 'white' : '',
+                fontWeight: isActive ? 'bold' : '',
+              }
+            }}
+            to="/followerStreamer"
+          >
             <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
               <div className="flex gap-3 items-center pl-2">
                 <i class="fa-solid fa-heart"></i>
                 <span>Theo dõi của tôi</span>
               </div>
             </div>
-          </Link>
+          </NavLink>
 
           {/* Chi tiết kim cương */}
-          <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
-            <div className="flex gap-3 items-center pl-2">
-              <i className="fa-regular fa-gem"></i>
-              <span>Chi tiết tài khoản kim cương</span>
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? '#6C47FF' : '',
+                width: isActive ? '100%' : '',
+                display: isActive ? 'inline-block' : '',
+                borderRadius: isActive ? '8px' : '',
+                color: isActive ? 'white' : '',
+                fontWeight: isActive ? 'bold' : '',
+              }
+            }}
+            to="/detailDiamondPage"
+          >
+            <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
+              <div className="flex gap-3 items-center pl-2">
+                <i className="fa-regular fa-gem"></i>
+                <span>Chi tiết tài khoản kim cương</span>
+              </div>
             </div>
-          </div>
+          </NavLink>
+
           {/* Chi tiết coin  */}
           <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
             <div className="flex gap-3 items-center pl-2">
@@ -49,12 +82,27 @@ const NavbarInforUser = () => {
             </div>
           </div>
           {/* Lịch sử */}
-          <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
-            <div className="flex gap-3 items-center pl-2">
-              <i class="fa-solid fa-table"></i>
-              <span>Lịch sử dự đoán</span>
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? '#6C47FF' : '',
+                width: isActive ? '100%' : '',
+                display: isActive ? 'inline-block' : '',
+                borderRadius: isActive ? '8px' : '',
+                color: isActive ? 'white' : '',
+                fontWeight: isActive ? 'bold' : '',
+              }
+            }}
+            to="/postMe"
+          >
+            <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
+              <div className="flex gap-3 items-center pl-2">
+                <i class="fa-solid fa-table"></i>
+                <span>Post me</span>
+              </div>
             </div>
-          </div>
+          </NavLink>
+
           {/* Subs */}
           <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
             <div className="flex gap-3 items-center pl-2">

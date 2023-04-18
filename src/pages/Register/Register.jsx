@@ -13,7 +13,6 @@ import {
 
 const Register = () => {
   const navigate = useNavigate()
-  const router = useParams()
   const dispatch = useDispatch()
 
   const { isAuthenticated, error, success } = useSelector(

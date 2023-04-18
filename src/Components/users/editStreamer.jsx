@@ -11,6 +11,7 @@ import {
   updateProfileStreamer,
 } from '../../store/actions/userActions'
 import Loading from '../Loading'
+import { modules } from '../../constants'
 
 const EditStreamer = () => {
   const { streamer: streamerSelect, loading } = useSelector(
@@ -19,10 +20,8 @@ const EditStreamer = () => {
   const { error, isUpdated } = useSelector(
     (state) => state.updateProfileStreamer
   )
-  const [imgsStreamerPreview, setImgsStreamerPreview] = useState(
-    streamerSelect?.imgs?.url
-  )
-  const [imgsStreamer, setImgsStreamer] = useState('')
+  const [imgsPreview, setImgsPreview] = useState(streamerSelect?.imgs?.url)
+  const [imgs, setImgs] = useState('')
   const [thumbnailsStreamerPreview, setThumbnailsStreamerPreview] = useState('')
   const [thumbnailsStreamer, setThumbnailsStreamer] = useState('')
   // const [listCategoryStream, setListCategoryStream] = useState([])
@@ -40,6 +39,16 @@ const EditStreamer = () => {
   const navigate = useNavigate()
 
   const handleChangeDataStreamerUpdate = (e) => {
+    if (e.target.name === 'imgs') {
+      const reader = new FileReader()
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          setImgs(reader.result)
+          setImgsPreview(reader.result)
+        }
+      }
+      reader.readAsDataURL(e.target.files[0])
+    }
     if (e.target.name === 'thumbnailStreamer') {
       const readerThumbnail = new FileReader()
       readerThumbnail.onload = () => {
@@ -49,16 +58,6 @@ const EditStreamer = () => {
         }
       }
       readerThumbnail.readAsDataURL(e.target.files[0])
-    }
-    if (e.target.name === 'imgsStreamer') {
-      const reader = new FileReader()
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImgsStreamer(reader.result)
-          setImgsStreamerPreview(reader.result)
-        }
-      }
-      reader.readAsDataURL(e.target.files[0])
     } else {
       setStreamer({ ...streamer, [e.target.name]: [e.target.value] })
     }
@@ -74,8 +73,8 @@ const EditStreamer = () => {
     myForm.set('displayName', streamer.displayName)
     myForm.set('discription', streamer.discription)
     // myForm.set('listCategoryStream', streamer.listCategoryStream)
-    if (imgsStreamer) {
-      myForm.set('imgs', imgsStreamer)
+    if (imgs) {
+      myForm.set('imgs', imgs)
     }
     if (thumbnailsStreamer) {
       myForm.set('thumbnails', thumbnailsStreamer)
@@ -93,6 +92,11 @@ const EditStreamer = () => {
   }
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
     if (error) {
       toast.error(error)
       setErrorMessage(error)
@@ -114,7 +118,7 @@ const EditStreamer = () => {
         discription: streamerSelect.discription,
       })
       if (streamerSelect.imgs && streamerSelect.imgs.url) {
-        setImgsStreamerPreview(streamerSelect.imgs.url)
+        setImgsPreview(streamerSelect.imgs.url)
       }
       if (streamerSelect.thumbnails && streamerSelect.thumbnails[0].url) {
         setThumbnailsStreamerPreview(streamerSelect.thumbnails[0].url)
@@ -155,18 +159,18 @@ const EditStreamer = () => {
                       <input
                         className="input-field hidden"
                         type="file"
-                        name="imgsStreamer"
-                        id="imgsStreamer"
+                        name="imgs"
+                        id="imgs"
                         accept="image/"
                         onChange={handleChangeDataStreamerUpdate}
                       />
                     </div>
 
                     <div className="flex justify-center items-center p-2">
-                      {imgsStreamerPreview && (
+                      {imgsPreview && (
                         <img
                           className="w-[200px] h-[200px] rounded-[50%] object-cover border-[1px] border-[solid] border-[green]"
-                          src={imgsStreamerPreview}
+                          src={imgsPreview}
                           alt="Img Streamer Preview"
                         />
                       )}
@@ -288,25 +292,6 @@ const EditStreamer = () => {
       )}
     </>
   )
-}
-
-const toolbarOptions = [
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ font: [] }],
-  ['bold', 'italic', 'underline', 'strike'],
-
-  ['code-block', 'image', 'link'],
-
-  [{ list: 'ordered' }, { list: 'bullet' }],
-
-  [{ color: [] }, { background: [] }],
-  [{ align: [] }],
-
-  ['clean'],
-]
-
-const modules = {
-  toolbar: toolbarOptions,
 }
 
 export default EditStreamer

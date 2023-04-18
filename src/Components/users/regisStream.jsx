@@ -12,6 +12,7 @@ import {
   loadUser,
   registerStreamer,
 } from '../../store/actions/userActions'
+import { modules } from '../../constants'
 
 const RegisStream = () => {
   const { success, error } = useSelector((state) => state.streamer)
@@ -100,6 +101,11 @@ const RegisStream = () => {
   }
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
     if (error) {
       toast.error(error)
       setErrorMessage(error)
@@ -282,25 +288,6 @@ const RegisStream = () => {
       )}
     </>
   )
-}
-
-const toolbarOptions = [
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ font: [] }],
-  ['bold', 'italic', 'underline', 'strike'],
-
-  ['code-block', 'image', 'link'],
-
-  [{ list: 'ordered' }, { list: 'bullet' }],
-
-  [{ color: [] }, { background: [] }],
-  [{ align: [] }],
-
-  ['clean'],
-]
-
-const modules = {
-  toolbar: toolbarOptions,
 }
 
 export default RegisStream

@@ -37,6 +37,16 @@ import {
   LOAD_DATA_SUCCESS,
   LOAD_DATA_FAIL,
   CLEAR_LOAD_DATA_FAIL,
+  GET_STREAMER_INTRODUCE_REQUEST,
+  GET_STREAMER_INTRODUCE_SUCCESS,
+  GET_STREAMER_INTRODUCE_FAIL,
+  CLEAR_GET_STREAMER_INTRODUCE_FAIL,
+  CLEAR_GET_STREAMER_INTRODUCE_SUCCESS,
+  FOLLOW_STREAMER_REQUEST,
+  FOLLOW_STREAMER_SUCCESS,
+  FOLLOW_STREAMER_FAIL,
+  CLEAR_FOLLOW_STREAMER_FAIL,
+  RESET_FOLLOW_STREAMER_SUCCESS,
 } from '../actions/types'
 
 const userReducer = (state = { user: {} }, action) => {
@@ -254,6 +264,79 @@ export const updateStreamerReducer = (state = {}, action) => {
         isUpdated: false,
       }
 
+    default:
+      return state
+  }
+}
+
+export const getIntroduceStreamerReducer = (
+  state = { streammer: {} },
+  action
+) => {
+  switch (action.type) {
+    case GET_STREAMER_INTRODUCE_REQUEST:
+      return {
+        loading: true,
+        streammer: null,
+        error: null,
+      }
+    case GET_STREAMER_INTRODUCE_SUCCESS:
+      return {
+        loading: false,
+        streammer: action.payload,
+        success: true,
+        error: null,
+      }
+    case GET_STREAMER_INTRODUCE_FAIL:
+      return {
+        loading: false,
+        streammer: null,
+        error: action.payload,
+        success: false,
+      }
+    case CLEAR_GET_STREAMER_INTRODUCE_SUCCESS:
+      return {
+        ...state,
+        success: null,
+      }
+    case CLEAR_GET_STREAMER_INTRODUCE_FAIL:
+      return {
+        ...state,
+        error: null,
+      }
+    default:
+      return state
+  }
+}
+
+export const addOrUnFollowStreamerReducer = (state = {}, action) => {
+  switch (action.type) {
+    case FOLLOW_STREAMER_REQUEST:
+      return {
+        loading: true,
+        error: null,
+      }
+    case FOLLOW_STREAMER_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      }
+    case FOLLOW_STREAMER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+    case RESET_FOLLOW_STREAMER_SUCCESS:
+      return {
+        ...state,
+        success: null,
+      }
+    case CLEAR_FOLLOW_STREAMER_FAIL:
+      return {
+        ...state,
+        error: null,
+      }
     default:
       return state
   }

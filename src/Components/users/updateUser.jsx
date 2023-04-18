@@ -3,19 +3,24 @@ import { toast } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import imgAvatar from '../../assets/images/defauktAvatar.gif'
 import { useNavigate } from 'react-router-dom'
-import 'react-quill/dist/quill.snow.css'
+
 import {
   clearErrors,
   loadUser,
   updateProfileUser,
 } from '../../store/actions/userActions'
+import { modules } from '../../constants'
 import { UPDATE_PROFILE_RESET } from '../../store/actions/types'
 import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+// import { useForm } from 'react-hook-form'
 
 const UpdateUser = () => {
   const { user: userSelect, loading } = useSelector((state) => state.users)
   const { error, isUpdated } = useSelector((state) => state.updateProfileUser)
-  const [avatarPreview, setAvatarPreview] = useState(imgAvatar)
+  // const [avatarPreview, setAvatarPreview] = useState(imgAvatar)
+  const [avatarPreview, setAvatarPreview] = useState(userSelect?.imgs?.url)
+
   const [avatar, setAvatar] = useState('')
 
   // const [about, setAbout] = useState('')
@@ -110,6 +115,11 @@ const UpdateUser = () => {
   }
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
     if (error) {
       toast.error(error)
       setErrorMessage(error)
@@ -150,13 +160,13 @@ const UpdateUser = () => {
     <>
       <form
         onSubmit={handleFormSubmitUpdate}
-        className="text-center p-4 min-h-[80vh] w-[1280px]"
+        className="p-4 min-h-[80vh] w-[1280px]"
       >
         <div className="flex flex-col gap-1 justify-center ">
           {/* avatar  */}
           <div className="flex flex-col justify-center items-center">
             <label
-              className="font-semibold text-2xl max-w-max "
+              className="flex justify-center items-center font-semibold text-2xl max-w-max rounded-full border-[1px] border-[solid] border-[green] px-2 cursor-pointer text-center"
               htmlFor="avatar"
             >
               Click for update Avatar
@@ -192,13 +202,15 @@ const UpdateUser = () => {
             </div>
           </div>
 
-          <div className="flex justify-around">
-            <div>
+          <div className="flex gap-2 w-full">
+            <div className="w-[50%] ">
               {/* Username */}
               <label className="flex gap-2 items-center mt-3 text-2xl">
-                Username{' '}
+                <span className="w-2/5">Username </span>
+
                 <input
-                  className="border-[1px] border-[solid] border-[green]"
+                  {...{ required: true }}
+                  className="border-[1px] border-[solid] border-[green] w-full rounded-lg"
                   name="username"
                   type="text"
                   value={username}
@@ -215,7 +227,7 @@ const UpdateUser = () => {
                 <div>Gender</div>
 
                 <div
-                  className="flex justify-between w-[60%]"
+                  className="flex justify-between w-[56%]"
                   name="gender"
                   value={gender}
                   onChange={handleChangeDataUpdate}
@@ -223,6 +235,7 @@ const UpdateUser = () => {
                   <div className="flex gap-2 items-center">
                     <label for="male">Nam</label>
                     <input
+                      {...{ required: true }}
                       type="radio"
                       id="male"
                       name="gender"
@@ -252,6 +265,7 @@ const UpdateUser = () => {
                 <div className="flex gap-2 items-center">
                   <label for="yes">Có</label>
                   <input
+                    // {...{ required: true }}
                     type="radio"
                     id="yes"
                     name="show_gender"
@@ -269,13 +283,13 @@ const UpdateUser = () => {
                   ></input>
                 </div>
               </div>
-            </div>
-            <div>
               {/* Phone  */}
               <label className="flex gap-2 items-center  justify-between mt-3 text-2xl">
-                Phone{' '}
+                <span className="w-2/5">Phone </span>
+
                 <input
-                  className="border-[1px] border-[solid] border-[green]"
+                  {...{ required: true }}
+                  className="border-[1px] border-[solid] border-[green] rounded-lg w-full"
                   type="text"
                   value={phone}
                   name="phone"
@@ -295,6 +309,7 @@ const UpdateUser = () => {
                 <div className="flex gap-2 items-center">
                   <label for="yes">Có</label>
                   <input
+                    // {...{ required: true }}
                     type="radio"
                     id="yes"
                     name="show_phone"
@@ -312,11 +327,16 @@ const UpdateUser = () => {
                   ></input>
                 </div>
               </div>
+            </div>
+            <div className="bg-green-500 w-[1px] float-left h-[250px]"></div>
+            <div className="w-[50%]">
               {/* Address */}
-              <label className="flex gap-2 items-center mt-3 text-2xl justify-between">
-                Address{' '}
+              <label className="flex gap-2 items-center mt-3 text-2xl ">
+                <span className="w-2/5">Address </span>
+
                 <input
-                  className="border-[1px] border-[solid] border-[green]"
+                  {...{ required: true }}
+                  className="border-[1px] border-[solid] border-[green] rounded-lg w-full"
                   type="text"
                   value={address}
                   name="address"
@@ -336,6 +356,7 @@ const UpdateUser = () => {
                 <div className="flex gap-2 items-center">
                   <label for="yes">Có</label>
                   <input
+                    // {...{ required: true }}
                     type="radio"
                     id="yes"
                     name="show_address"
@@ -353,21 +374,20 @@ const UpdateUser = () => {
                   ></input>
                 </div>
               </div>
-            </div>
-            <div>
               {/* Birthday  */}
-              <label className="flex gap-2 items-center mt-1 justify-between text-2xl">
-                Birthday{' '}
-                <div>
-                  <input
-                    className="border-[1px] border-[solid] border-[green]"
-                    type="date"
-                    value={birthday}
-                    name="birthday"
-                    placeholder="Your birthday"
-                    onChange={handleChangeDataUpdate}
-                  />
-                </div>
+              <label className="flex gap-2 items-center mt-1  text-2xl">
+                <span className="w-2/5"> Birthday </span>
+
+                <input
+                  {...{ required: true }}
+                  className="border-[1px] border-[solid] border-[green] rounded-lg w-full"
+                  type="date"
+                  value={birthday}
+                  name="birthday"
+                  placeholder="Your birthday"
+                  onChange={handleChangeDataUpdate}
+                />
+
                 <i className="fa-solid fa-pen-to-square cursor-pointer"></i>
               </label>
               {/* show_birthday */}
@@ -381,6 +401,7 @@ const UpdateUser = () => {
                 <div className="flex gap-2 items-center">
                   <label for="yes">Có</label>
                   <input
+                    // {...{ required: true }}
                     type="radio"
                     id="yes"
                     name="show_birthday"
@@ -400,9 +421,11 @@ const UpdateUser = () => {
               </div>
               {/* ProfileDescription */}
               <label className="flex gap-2 items-center mt-3 justify-between text-2xl ">
-                ProfileDescription{' '}
+                <span className="w-2/5">ProfileDescription </span>
+
                 <input
-                  className="border-[1px] border-[solid] border-[green]"
+                  {...{ required: true }}
+                  className="border-[1px] border-[solid] border-[green] rounded-lg w-full"
                   type="text"
                   value={profileDescription}
                   name="profileDescription"
@@ -422,6 +445,7 @@ const UpdateUser = () => {
                 <div className="flex gap-2 items-center ">
                   <label for="yes">Có</label>
                   <input
+                    // {...{ required: true }}
                     type="radio"
                     id="yes"
                     name="show_profile_index"
@@ -462,25 +486,6 @@ const UpdateUser = () => {
       </form>
     </>
   )
-}
-
-const toolbarOptions = [
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  [{ font: [] }],
-  ['bold', 'italic', 'underline', 'strike'],
-
-  ['code-block', 'image', 'link'],
-
-  [{ list: 'ordered' }, { list: 'bullet' }],
-
-  [{ color: [] }, { background: [] }],
-  [{ align: [] }],
-
-  ['clean'],
-]
-
-const modules = {
-  toolbar: toolbarOptions,
 }
 
 export default UpdateUser

@@ -25,15 +25,15 @@ const Header = () => {
     }
   }
 
-  console.log(img)
-
   return (
     <>
       <div className="h-16 w-screen bg-black ">
         <div className=" px-4 h-16 m-auto text-gray-400 flex items-center justify-between grid grid-cols-2">
           <div className="flex cursor-pointer ">
             <div className="text-3xl font-bold my-3 text-white">
-              <p className="">PBA TV</p>
+              <Link to="/">
+                <p className="">PBA TV</p>
+              </Link>
             </div>
             <div className="mx-8">
               <ul className="flex gap-6 text-lg my-3">
@@ -44,7 +44,7 @@ const Header = () => {
                   <li className="hover:text-white">Phát trực tiếp</li>
                 </Link>
                 <Link to="/LiveShowPage">
-                  <li className="hover:text-white">Nimo Show</li>
+                  <li className="hover:text-white">PBA Show</li>
                 </Link>
                 <Link to="/pageCategorisStream">
                   <li className="hover:text-white">
@@ -66,10 +66,8 @@ const Header = () => {
                     </div>
                   </li>
                 </Link>
-                <Link to="/">
-                  <li className="hover:text-white">
-                    Giải đấu <i class="fa-solid fa-chevron-down"></i>
-                  </li>
+                <Link to="/blog">
+                  <li className="hover:text-white">Blog</li>
                 </Link>
               </ul>
             </div>
@@ -145,9 +143,7 @@ const Header = () => {
                   </div>
                 </div>
 
-                {/* <li className="hover:text-white cursor-pointer flex gap-2 items-center">
-                    Tải xuống <i class="fa-solid fa-download"></i>
-                  </li> */}
+                
                 <li className="hover:text-white cursor-pointer flex items-center">
                   . . .
                 </li>
@@ -214,7 +210,10 @@ const Header = () => {
                           </span>
                         </div>
                         <div className="mt-1 " onClick={handleSubmitLogout}>
-                          <ButtonSubmit titleButton={'Logout'} />
+                          <ButtonSubmit
+                            titleButton={'Logout'}
+                            cssButton={'button-submit'}
+                          />
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 items-center justify-center">
@@ -245,10 +244,16 @@ const Header = () => {
               ) : (
                 <div className="flex items-center gap-4 my-3 text-white">
                   <Link to="/Login">
-                    <ButtonSubmit titleButton={'Đăng nhập'} />
+                    <ButtonSubmit
+                      titleButton={'Đăng nhập'}
+                      cssButton={'button-submit'}
+                    />
                   </Link>
                   <Link to="/Register">
-                    <ButtonSubmit titleButton={'Đăng ký'} />
+                    <ButtonSubmit
+                      titleButton={'Đăng ký'}
+                      cssButton={'button-submit'}
+                    />
                   </Link>
                 </div>
               )}

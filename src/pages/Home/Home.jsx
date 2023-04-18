@@ -89,7 +89,7 @@ const Home = () => {
                 <Rank />
               </div>
             </div>
-            {/* LMHT */}
+            {/* categoriesStream */}
             <div>
               {data?.categoriesStream && (
                 <FeedCategories
@@ -99,13 +99,13 @@ const Home = () => {
               )}
             </div>
 
-            {/* PUBG */}
+            {/* Stream */}
             <div>
               {stream?.data && (
                 <FeedStream stream={stream.data} titleStream={'Stream'} />
               )}
             </div>
-            <div>
+            <div className="pb-4">
               {data?.categoriesStream && (
                 <FeedTitle
                   streammers={data.streammers}

@@ -20,7 +20,7 @@ const FeedStreamer = ({ streammers, titleCategory }) => {
           </a>
         </div>
         <div className=" gap-4 grid flex-wrap grid-cols-5">
-          {streammers?.map((item) => (
+          {streammers?.slice(0, 10).map((item) => (
             <ItemProduct
               key={item._id}
               title={item.title}
@@ -28,6 +28,7 @@ const FeedStreamer = ({ streammers, titleCategory }) => {
               displayName={item.displayName}
               imgsUrl={item.imgs.url}
               thumbnailsUrl={item.thumbnails[0].url}
+              id={item._id}
             />
           ))}
         </div>
