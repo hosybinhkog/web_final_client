@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import Error404 from '../pages/Error404/Error404'
 import ForgotPassword from '../pages/ForgotPassword/ForgotPassword'
 import Home from '../pages/Home/Home'
@@ -24,10 +25,12 @@ import PageCategorisStream from '../Components/categoryPage/pageCategorisStream'
 import JoinRoom from '../pages/Stream/JoinRoom'
 import CreateRoom from '../pages/Stream/CreateRoom'
 import StreambyStreeamer from '../pages/Stream/StreambyStreeamer'
-import Videos from '../pages/Videos/Videos'
-
+import UploadVideo from '../pages/UploadVideo/UploadVideo'
+import StreamerManage from '../Components/users/streamerManage'
 
 const Routers = () => {
+  const streamer = useSelector((state) => state.loadStreamer.streamer)
+  console.log(streamer?.isStreaming)
   return (
     <Routes>
       <Route path="/Login" element={<Login />} />
@@ -52,10 +55,20 @@ const Routers = () => {
         <Route path="/followerStreamer" element={<FollowerStreamer />} />
         <Route path="/playButton" element={<PlayButton />} />
         <Route path="/pageCategorisStream" element={<PageCategorisStream />} />
-        <Route path="joinroom" element={<JoinRoom />} />
-        <Route path="createroom" element={<CreateRoom />} />
-        <Route path="streaming" element={<StreambyStreeamer />} />
-        <Route path="videos" element={<Videos />} />
+        <Route path="/joinroom" element={<JoinRoom />} />
+
+        {/* <Route path="/streaming" element={<StreambyStreeamer />} /> */}
+        
+        <Route path="/streamermanage" element={<StreamerManage />} />
+        {streamer?.status === "NOSTREAM" && (
+          <Route path="/createroom" element={<CreateRoom />} />
+        )}
+        {streamer?.status === "STREAMING" && (
+          <Route path="/streaming" element={<StreambyStreeamer />} />
+        )}
+          {streamer?.status === "UPLOADING" && (
+          <Route path="/uploadvideo" element={<UploadVideo />} />
+        )}
       </Route>
     </Routes>
   )

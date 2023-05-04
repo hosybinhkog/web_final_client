@@ -88,17 +88,18 @@ function Conference() {
   }
 
   return (
-    <div className="conference-section">
+    <div className="conference-section w-full">
       <div className="peers-container flex">
         {peers.map((peer) => (
           // <Peer key={peer.id} peer={peer} />
-          <>
+          <div className='min-w-[70%] m-12'>
             {peer.roleName === 'streamer' ? (
               <div className="flex flex-col justify-center items-center max-w-screen-lg">
-                <div className="p-4">
+                {/* If u want stream with sharing screen use this code: */}
+                {/* <div className="p-4">
                   <VideoScreen key={peer.id} peer={peer} />
-                </div>
-                <div className="p-4 flex justify-center items-center">
+                </div> */}
+                <div className="p-4 flex flex-col justify-center items-center">
                   <VideoCamera key={peer.id} peer={peer} />
                   {peer.roleName === 'streamer' ? (
                     <div className="flex gap-4 mt-20 justify-center items-center ml-24">
@@ -123,7 +124,7 @@ function Conference() {
                         )}
                       </button>
 
-                      {amIScreenSharing ? (
+                      {/* {amIScreenSharing ? (
                         <div>
                           <button
                             className="fa-window-close bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded text-orange-100 transition duration-500"
@@ -139,24 +140,24 @@ function Conference() {
                           >
                           </button>
                         </div>
-                      )}
-                      {screenSharingPeerName && (
+                      )} */}
+                      {/* {screenSharingPeerName && (
                         <p>{`${screenSharingPeerName} is sharing their screen`}</p>
-                      )}
+                      )} */}
                       {/* {isRecordingOn ? ( */}
-                      <button
+                      {/* <button
                         className="bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded-full text-orange-100 transition duration-500"
                         onClick={handleStopRecording}
                       >
                         Stop
-                      </button>
+                      </button> */}
                       {/* ) : ( */}
-                      <button
+                      {/* <button
                         className="bg-orange-600 hover:bg-orange-500 py-3 px-8 rounded-full text-orange-100 transition duration-500"
                         onClick={handleStartRecording}
                       >
                         Record
-                      </button>
+                      </button> */}
                       {/* )} */}
                       <EndRoomButton />
                     </div>
@@ -168,10 +169,12 @@ function Conference() {
             ) : (
               <></>
             )}
-          </>
+          </div>
         ))}
-
-        <ChatContainer />
+        <div className="">
+          <ChatContainer />
+        </div>
+        
       </div>
     </div>
   )

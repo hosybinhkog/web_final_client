@@ -12,6 +12,7 @@ import {
   loadUser,
   registerStreamer,
 } from '../../store/actions/userActions'
+import axios from 'axios'
 
 const RegisStream = () => {
   const { success, error } = useSelector((state) => state.streamer)
@@ -78,10 +79,17 @@ const RegisStream = () => {
   const handleFormSubmitRegisStreamer = async (e) => {
     e.preventDefault()
 
+    const response = await axios.post('http://localhost:5000/create-room', {
+      name: streamer.displayname,
+      description: streamer.discription,
+    })
+    console.log('New room created:', response.data)
+
     const id = toast.loading('Register Streamer...', { position: 'top-center' })
     const myForm = new FormData()
     myForm.set('displayName', streamer.displayName)
     myForm.set('discription', streamer.discription)
+    myForm.set('room_id', response.data.id)
     // myForm.set('listCategoryStream', streamer.listCategoryStream)
     if (imgsStreamer) {
       myForm.set('imgs', imgsStreamer)

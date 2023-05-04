@@ -35,12 +35,14 @@ const NavbarInforUser = () => {
           </Link>
 
           {/* Chi tiết kim cương */}
+          {/* <Link to="/"> */}
           <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
             <div className="flex gap-3 items-center pl-2">
               <i className="fa-regular fa-gem"></i>
-              <span>Chi tiết tài khoản kim cương</span>
+              <span>Kim cuong</span>
             </div>
           </div>
+          {/* </Link> */}
           {/* Chi tiết coin  */}
           <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
             <div className="flex gap-3 items-center pl-2">
@@ -86,6 +88,14 @@ const NavbarInforUser = () => {
         </div>
         <span className="text-white text-xl mt-9 mb-2">Tôi là Streamer</span>
         <ul>
+          <Link to="/streamermanage">
+            <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
+              <div className="flex gap-3 items-center pl-2">
+                <i className="fa-regular fa-gem"></i>
+                <span>Streamer manager</span>
+              </div>
+            </div>
+          </Link>
           <li className="">
             <div className="py-3 hover:bg-black rounded-lg cursor-pointer">
               <div className="flex gap-3 items-center pl-2">

@@ -1,4 +1,5 @@
 import React from 'react'
+import CameraSelector from './CameraSelector'
 import {
   useHMSActions,
   useHMSStore,
@@ -27,7 +28,7 @@ const VideoCamera = ({ peer, isLocal }) => {
   }, [videoTrack, hmsActions])
 
   return (
-    <div>
+    <div className="ml-12">
       {peer.roleName === 'viewer' ? (
         <></>
       ) : (
@@ -39,10 +40,11 @@ const VideoCamera = ({ peer, isLocal }) => {
               playsInline
               muted={true}
               controls
-              className={`object-cover rounded-lg shadow-lg max-w-52 max-h-52${
+              className={`object-cover rounded-lg shadow-lg w-[1540px] ${
                 isLocal ? 'mirror' : ''
               }`}
             ></video>
+            {peer.roleName === 'streamer' ? <CameraSelector /> : <></>}
           </div>
         </div>
       )}

@@ -17,9 +17,9 @@ function Conference() {
               <></>
             ) : (
               <div className="flex flex-col justify-center items-center max-w-screen-lg">
-                <div className="p-4">
+                {/* <div className="p-4">
                   <VideoScreen key={peer.id} peer={peer} />
-                </div>
+                </div> */}
                 <div className="p-4 flex justify-center items-center">
                   <VideoCamera key={peer.id} peer={peer} />
                 </div>

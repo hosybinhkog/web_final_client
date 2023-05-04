@@ -15,9 +15,12 @@ import { getDataStreamReducer } from './reducers/dataStreamReducer'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
+// import { isStreamingReducer } from './reducers/streamReducer'
+
 const initialState = {}
 
 const reducers = combineReducers({
+  // isStreaming: isStreamingReducer,
   users: userReducer,
   password: forgotPasswordReducer,
   updateProfileUser: updateUserReducer,

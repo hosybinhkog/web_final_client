@@ -20,7 +20,7 @@ const FeedStream = ({ stream, titleStream }) => {
         </div>
         <div className=" gap-4 grid flex-wrap grid-cols-5">
           {stream?.map((item) =>
-            item.status ? (
+            item.status === "STREAMING" ? (
               <ItemStream
                 key={item.userId}
                 description={item.description}

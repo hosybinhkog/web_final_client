@@ -42,6 +42,10 @@ import {
   LOAD_DATA_SUCCESS,
   LOAD_DATA_FAIL,
   CLEAR_LOAD_DATA_FAIL,
+  SET_IS_STREAMING,
+  UPDATE_STREAMER_REQUEST,
+  UPDATE_STREAMER_SUCCESS,
+  UPDATE_STREAMER_FAIL
 } from './types'
 
 export const login = (email, password) => async (dispatch) => {
@@ -240,3 +244,23 @@ export const loadStreamer = () => async (dispatch) => {
     })
   }
 }
+
+// export const updateStreamer = (streamerData) => async (dispatch) => {
+//   try {
+//     dispatch({ type: UPDATE_STREAMER_REQUEST })
+
+//     await axiosClient.put('/user/streamer', streamerData)
+
+//     dispatch({ type: UPDATE_STREAMER_SUCCESS })
+    
+//     // Call loadStreamer action to update data after put request
+//     dispatch(loadStreamer())
+//   } catch (error) {
+//     dispatch({
+//       type: UPDATE_STREAMER_FAIL,
+//       payload: error.response.data.message,
+//     })
+//   }
+// }
+
+

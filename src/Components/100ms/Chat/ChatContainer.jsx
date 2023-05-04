@@ -24,20 +24,22 @@ import {
       }
     }, [storeMessages]);
     return (
-      <ChatLayout>
-        <ChatFeed>
-          {storeMessages.map((m) => (
-            <Chat key={m.id} msg={m} />
-          ))}
-        </ChatFeed>
-        <ChatInput
-          value={chatInput}
-          onChange={(e) => setChatInput(e.target.value)}
-          onKeyPress={() => {
-            sendMessage();
-          }}
-        />
-      </ChatLayout>
+      <div className="mt-14 mb-4">
+        <ChatLayout>
+          <ChatFeed>
+            {storeMessages.map((m) => (
+              <Chat key={m.id} msg={m} />
+            ))}
+          </ChatFeed>
+          <ChatInput
+            value={chatInput}
+            onChange={(e) => setChatInput(e.target.value)}
+            onKeyPress={() => {
+              sendMessage();
+            }}
+          />
+        </ChatLayout>
+      </div>
     );
   };
   
