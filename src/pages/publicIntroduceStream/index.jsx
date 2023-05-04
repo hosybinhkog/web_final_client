@@ -9,7 +9,6 @@ import {
   clearIntroduceStreamerSuccess,
   FollowStreamer,
 } from '../../store/actions/userActions'
-import FeedItemStatusFollow from '../../Components/CategoryItem/components/handleFeed/feedItemStatusFollow'
 import ItemStatusFollow from '../../Components/CategoryItem/components/handleItem/itemStatusFollow'
 
 const PublicIntroduceStream = () => {

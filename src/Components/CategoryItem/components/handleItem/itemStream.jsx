@@ -2,6 +2,7 @@ import React from 'react'
 import avatarDefault from '../../../.././assets/images/defaultAvatarStreamer.png'
 import { useSelector } from 'react-redux'
 import PlayButton from '../../../Commom/playButton'
+import { Link } from 'react-router-dom'
 
 const ItemStream = ({ thumbnailsUrl, description, title, avatarStreamer }) => {
   const { streamer } = useSelector((state) => state.loadStreamer)
@@ -33,13 +34,6 @@ const ItemStream = ({ thumbnailsUrl, description, title, avatarStreamer }) => {
             />
           </div>
           <div className="flex flex-col gap-2 w-full text-white font-bold">
-            <a href="/">
-              {' '}
-              <span
-                className="hover:text-blue-700 line-clamp-2"
-                dangerouslySetInnerHTML={{ __html: description }}
-              ></span>
-            </a>
             <div className="flex justify-between text-gray-500">
               <span className="text-xs">{title}</span>
               {/* <div className=" flex gap-1 items-center">
@@ -47,6 +41,12 @@ const ItemStream = ({ thumbnailsUrl, description, title, avatarStreamer }) => {
                       <span>{product.viewer}k</span>
                     </div> */}
             </div>
+            <Link to="/">
+              <span
+                className="hover:text-blue-700 line-clamp-2"
+                dangerouslySetInnerHTML={{ __html: description }}
+              ></span>
+            </Link>
           </div>
         </div>
       </div>

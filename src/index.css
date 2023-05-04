@@ -15,4 +15,14 @@
   .button-report {
     @apply flex justify-center w-44 mt-6 p-2 bg-[rgb(241,42,59)] rounded-md hover:bg-[rgba(241,42,59,.8)] cursor-pointer mx-auto text-white  text-xl font-bold mb-4;
   }
+  .pagination {
+    @apply flex justify-center items-center mb-2 text-lg gap-2;
+  }
+  .page-num {
+    @apply py-2 px-4 rounded font-normal hover:bg-[#5AB1BB] hover:text-white;
+  }
+  .active {
+    @apply bg-[#5AB1BB];
+  }
 }
+

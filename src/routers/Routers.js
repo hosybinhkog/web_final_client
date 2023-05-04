@@ -29,9 +29,10 @@ import DetailDiamondPage from '../Components/users/detailDiamondPage'
 import ReportBlog from '../pages/Blog/reportBlog'
 import FeedItemAllPost from '../Components/CategoryItem/components/handleFeed/feedItemAllPost'
 import FeedItemCategoriesAllPost from '../Components/CategoryItem/components/handleFeed/feedItemCategoriesPost'
-import ModalNoti from '../Components/Commom/modalNoti'
 import PublicIntroduceStream from '../pages/publicIntroduceStream'
-import Cloudari from '../Components/Commom/cloudari'
+import PageVideo from '../Components/users/pageVideo'
+import SearchStreamer from '../pages/SearchStreamer/index.jsx'
+import StepStream from '../pages/stepStream'
 
 const Routers = () => {
   return (
@@ -53,8 +54,14 @@ const Routers = () => {
         path="/feedItemCategoriesPost"
         element={<FeedItemCategoriesAllPost />}
       />
-      <Route path="/modalNoti" element={<ModalNoti />} />
-      <Route path="/cloudari" element={<Cloudari />} />
+
+      <Route path="/searchStreamer" element={<SearchStreamer />} />
+      <Route
+        path="/searchStreamer?keyword=:keyword&page=:page"
+        element={<SearchStreamer />}
+      />
+      <Route path="/stepstream" element={<StepStream />} />
+
       <Route path="*" element={<Error404 />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/usersPage" element={<UsersPage />} />
@@ -75,6 +82,7 @@ const Routers = () => {
         <Route path="/pageCategorisStream" element={<PageCategorisStream />} />
         <Route path="/postMe" element={<PostMe />} />
         <Route path="/createPost" element={<CreatePost />} />
+        <Route path="/pageVideo" element={<PageVideo />} />
       </Route>
     </Routes>
   )

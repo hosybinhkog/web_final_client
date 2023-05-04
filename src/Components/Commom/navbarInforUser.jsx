@@ -125,12 +125,26 @@ const NavbarInforUser = () => {
             </div>
           </div>
           {/* Video */}
-          <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
-            <div className="flex gap-3 items-center pl-2">
-              <i class="fa-brands fa-youtube"></i>
-              <span>Video của tôi</span>
+          <NavLink
+            style={({ isActive }) => {
+              return {
+                backgroundColor: isActive ? '#6C47FF' : '',
+                width: isActive ? '100%' : '',
+                display: isActive ? 'inline-block' : '',
+                borderRadius: isActive ? '8px' : '',
+                color: isActive ? 'white' : '',
+                fontWeight: isActive ? 'bold' : '',
+              }
+            }}
+            to="/pageVideo"
+          >
+            <div className=" py-3 hover:bg-black rounded-lg cursor-pointer">
+              <div className="flex gap-3 items-center pl-2">
+                <i class="fa-brands fa-youtube"></i>
+                <span>Video của tôi</span>
+              </div>
             </div>
-          </div>
+          </NavLink>
         </div>
         <span className="text-white text-xl mt-9 mb-2">Tôi là Streamer</span>
         <ul>

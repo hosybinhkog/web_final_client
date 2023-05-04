@@ -16,7 +16,6 @@ const ItemFollowStreamer = ({ avatarUrl, username, description }) => {
           <div>
             <div className="flex flex-col mb-4 font-bold">
               <span className="inline-block">{username}</span>
-
               <div
                 className="line-clamp-1"
                 dangerouslySetInnerHTML={{ __html: description }}

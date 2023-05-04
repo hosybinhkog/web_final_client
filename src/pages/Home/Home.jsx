@@ -12,6 +12,7 @@ import FeedStream from '../../Components/CategoryItem/components/handleFeed/feed
 const Home = () => {
   const { loading, data } = useSelector((state) => state.loadDataIndex)
   const { stream } = useSelector((state) => state.loadDataStream)
+
   return (
     <>
       {loading ? (
@@ -39,55 +40,8 @@ const Home = () => {
             </div>
 
             {/* Đề xuất */}
-            <div className="grid grid-cols-2 pb-5">
-              <div className="mt-[13px]">
-                <div className="bg-black text-white px-6">
-                  <div>
-                    <a href="/">
-                      <div className="pb-5">
-                        <span className="text-3xl font-bold  hover:text-gray-500">
-                          Được đề xuất
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-                  <div className="flex gap-4">
-                    <div>
-                      <a href="/">
-                        <img
-                          className="rounded-xl h-[350px]"
-                          src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
-                          alt=""
-                        />
-                      </a>
-                    </div>
-                    <div className="flex-col gap-5">
-                      <div className="pb-5">
-                        <a href="/">
-                          <img
-                            className="rounded-xl h-[165px] object-cover"
-                            src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                      <div>
-                        <a href="/">
-                          <img
-                            className="h-[165px] rounded-xl object-cover"
-                            src="https://datnendep.vn/wp-content/uploads/2019/10/anh-phong-tro-1_1545126166.jpg"
-                            alt=""
-                          />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Bảng xếp hạng */}
-              <div className="">
-                <Rank />
-              </div>
+            <div className="">
+              {stream?.data && <Rank streamRecommend={stream.data} />}
             </div>
             {/* categoriesStream */}
             <div>

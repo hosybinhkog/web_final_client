@@ -29,6 +29,12 @@ import {
   reportPostReducer,
   loadCategoriesReportPostReducer,
 } from './reducers/reportReducer'
+import {
+  getAllStreamerFilterReducer,
+  getProductsCountReducer,
+  getResultPerPageReducer,
+  getFilteredProductsCountReducer,
+} from './reducers/searchReducer'
 
 const initialState = {}
 
@@ -52,6 +58,7 @@ const reducers = combineReducers({
   loadCategoriesReportPost: loadCategoriesReportPostReducer,
   getIntroduceStreamerById: getIntroduceStreamerReducer,
   followStreamer: addOrUnFollowStreamerReducer,
+  getDataAllStreamerFilter: getAllStreamerFilterReducer,
 })
 
 const middleware = [thunk]

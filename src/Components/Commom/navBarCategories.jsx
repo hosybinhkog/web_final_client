@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const NavBarCategories = () => {
+  const { data } = useSelector((state) => state.loadDataIndex)
   return (
     <div className="w-2/12 bg-[#1A1A1A] text-gray-200">
       <div className="px-1">
@@ -107,37 +109,24 @@ const NavBarCategories = () => {
         </div>
         <div className="p-2 rounded-md bg-zinc-700 mt-4">
           <div className="">
-            <a
-              href="/"
-              className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
-            >
-              <div className="flex flex-col gap-2 ">
-                <span>League of Legends</span>
-              </div>
-            </a>
-            <a
-              href="/"
-              className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
-            >
-              <div className="flex flex-col gap-2 ">
-                <span>GTA5</span>
-              </div>
-            </a>
-            <a
-              href="/"
-              className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
-            >
-              <div className="flex flex-col gap-2 ">
-                <span>PUBG Mobile</span>
-              </div>
-            </a>
+            {data?.categoriesStream &&
+              data?.categoriesStream?.map((categoriesStream) => (
+                <a
+                  href="/"
+                  className="flex gap-2 pb-4 hover:bg-zinc-900 hover:rounded-lg items-center p-1"
+                >
+                  <div className="flex flex-col gap-2 ">
+                    <span>{categoriesStream.title}</span>
+                  </div>
+                </a>
+              ))}
           </div>
           <div className="">
-            <a href="/">
+            <NavLink to="/pageCategorisStream">
               <button className="flex py-2 gap-2 w-full justify-center hover:bg-zinc-900 hover:rounded-lg">
                 Thêm <i className="fa-solid fa-chevron-right mt-1"></i>
               </button>
-            </a>
+            </NavLink>
           </div>
         </div>
         {/* Giai tri */}

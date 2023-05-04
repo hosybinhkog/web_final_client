@@ -54,7 +54,7 @@ const ItemStatusFollow = ({ streamerId }) => {
           onClick={() => handleFollowAndUnfollowStreamer()}
           className="flex justify-center  items-center"
         >
-          <ButtonSubmit titleButton={'UnFollow'} cssButton={'button-create'} />
+          <ButtonSubmit titleButton={'UnFollow'} cssButton={'button-report'} />
         </div>
       ) : (
         <div

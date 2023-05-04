@@ -10,6 +10,7 @@ import Loading from './Components/Loading'
 import { Toaster } from 'react-hot-toast'
 import { loadDataAllPost } from './store/actions/postActions'
 import { loadCategoriesPost } from './store/actions/postActions'
+import { getDataAllStreamerFilter } from './store/actions/searchActions'
 
 function App() {
   const [hasWindow, setHasWindow] = useState(false)
@@ -26,6 +27,7 @@ function App() {
     await store.dispatch(loadDataStream())
     await store.dispatch(loadCategoriesPost())
     await store.dispatch(loadDataAllPost())
+    await store.dispatch(getDataAllStreamerFilter())
   }, [])
 
   if (!hasWindow) {
