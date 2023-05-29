@@ -6,12 +6,15 @@ import { Modal, Ripple, initTE } from 'tw-elements'
 
 import { useEffect } from 'react'
 initTE({ Modal, Ripple })
+
 const ItemComment = ({ avatarUrl, username, comment, id, commentId }) => {
   const dispatch = useDispatch()
   const handleDeletePost = () => {
     dispatch(deleteCommentPostById(id, commentId))
   }
-  useEffect(() => {}, [])
+  useEffect(() => {
+    initTE({ Modal, Ripple })
+  }, [])
   return (
     <div className="flex gap-2 mb-2 ">
       <div>

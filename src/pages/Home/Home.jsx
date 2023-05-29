@@ -21,7 +21,6 @@ const Home = () => {
         <>
           <div className="min-h-[80vh] bg-black">
             {/* sliders */}
-
             <div className="bg-[url('/public/banner.jpg')] bg-no-repeat bg-cover h-[750px] overflow-hidden">
               <div className="flex gap-4 justify-center items-center ">
                 <div className="relative ">
@@ -38,7 +37,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-
             {/* Đề xuất */}
             <div className="">
               {stream?.data && <Rank streamRecommend={stream.data} />}
@@ -52,7 +50,6 @@ const Home = () => {
                 />
               )}
             </div>
-
             {/* Stream */}
             <div>
               {stream?.data && (
@@ -67,6 +64,7 @@ const Home = () => {
                 />
               )}
             </div>
+            {/* All url stream */}
           </div>
         </>
       )}

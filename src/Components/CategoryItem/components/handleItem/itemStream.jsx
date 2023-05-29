@@ -5,19 +5,18 @@ import PlayButton from '../../../Commom/playButton'
 import { Link } from 'react-router-dom'
 
 const ItemStream = ({ thumbnailsUrl, description, title, avatarStreamer }) => {
-  const { streamer } = useSelector((state) => state.loadStreamer)
-
   return (
     <>
       <div className="bg-[#1A1A1A] rounded-xl ">
         <div className="relative group  ">
-          <a href="/">
+          <Link to="/videostream">
+            {' '}
             <img
               className="object-cover rounded-lg w-[347px] h-[195px] hover:bg-red-700 "
               src={thumbnailsUrl}
-              alt=""
-            />
-          </a>
+            ></img>
+          </Link>
+
           <button
             className={`absolute top-[40%] left-[40%]   text-yellow-500 font-black rounded-full w-[60px] h-[60px] text-5xl shadow-sm  hover:cursor-pointer opacity-0 group-hover:opacity-80 `}
           >

@@ -53,6 +53,7 @@ import {
   CLEAR_FOLLOW_STREAMER_FAIL,
   RESET_FOLLOW_STREAMER_SUCCESS,
 } from './types'
+import { createLogHistory } from '../../apis'
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -123,6 +124,7 @@ export const register = (username, email, password) => async (dispatch) => {
 
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: REGISTER_USER_FAIL,
       payload: error.response.data.message,
@@ -144,6 +146,7 @@ export const registerStreamer = (streamerData) => async (dispatch) => {
       payload: data.registerStreammer,
     })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: REGISTER_STREAMER_FAIL,
       payload: error.response.data.message,
@@ -163,6 +166,7 @@ export const updatePassword = (password) => async (dispatch) => {
 
     dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: UPDATE_PASSWORD_FAILURE,
       payload: error?.response?.data?.message || 'error server inteval',
@@ -179,6 +183,7 @@ export const forgotPassword = (email) => async (dispatch) => {
     })
     dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: FORGOT_PASSWORD_FAILURE,
       payload: error?.response?.data?.message || 'error server inteval',
@@ -197,6 +202,7 @@ export const resetPassword = (token, password) => async (dispatch) => {
 
     dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: RESET_PASSWORD_FAILURE,
       payload:
@@ -214,6 +220,7 @@ export const updateProfileUser = (userData) => async (dispatch) => {
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: UPDATE_PROFILE_FAILURE,
       payload: error.response.data.message,
@@ -229,6 +236,7 @@ export const updateProfileStreamer = (streamerData) => async (dispatch) => {
 
     dispatch({ type: UPDATE_PROFILE_STREAMER_SUCCESS, payload: data.success })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: UPDATE_PROFILE_STREAMER_FAILURE,
       payload: error.response.data.message,
@@ -244,6 +252,7 @@ export const loadStreamer = () => async (dispatch) => {
 
     dispatch({ type: LOAD_STREAMER_SUCCESS, payload: data.streammer })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: LOAD_STREAMER_FAIL,
       payload: error.response.data.message,
@@ -259,6 +268,7 @@ export const getIntroduceStreamerById = (id) => async (dispatch) => {
 
     dispatch({ type: GET_STREAMER_INTRODUCE_SUCCESS, payload: data.streammer })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: GET_STREAMER_INTRODUCE_FAIL,
       payload: error.response.data.message,
@@ -291,6 +301,7 @@ export const followStreamer = (streamerId) => async (dispatch) => {
     })
     dispatch({ type: FOLLOW_STREAMER_SUCCESS, payload: data.success })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: FOLLOW_STREAMER_FAIL,
       payload: error?.response?.data?.message,

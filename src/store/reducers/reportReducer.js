@@ -8,6 +8,11 @@ import {
   NEW_REPORT_FAIL,
   CLEAR_NEW_REPORT_FAIL,
   RESET_CREATE_REPORT,
+  NEW_REPORT_STREAMER_REQUEST,
+  NEW_REPORT_STREAMER_SUCCESS,
+  NEW_REPORT_STREAMER_FAIL,
+  CLEAR_NEW_REPORT_STREAMER_FAIL,
+  RESET_CREATE_REPORT_STREAMER,
 } from '../actions/types'
 
 export const reportPostReducer = (state = { reportPost: {} }, action) => {
@@ -73,6 +78,45 @@ export const loadCategoriesReportPostReducer = (state = {}, action) => {
       }
 
     case CLEAR_GET_CATEGORY_REPORT_FAIL:
+      return {
+        ...state,
+        error: null,
+      }
+    default:
+      return state
+  }
+}
+
+export const reportStreamerReducer = (state = { newReport: {} }, action) => {
+  switch (action.type) {
+    case NEW_REPORT_STREAMER_REQUEST:
+      return {
+        loading: true,
+        success: false,
+        newReport: null,
+        error: null,
+      }
+    case NEW_REPORT_STREAMER_SUCCESS:
+      return {
+        loading: false,
+        newReport: action.payload,
+        success: true,
+        error: null,
+      }
+    case NEW_REPORT_STREAMER_FAIL:
+      return {
+        loading: false,
+        newReport: null,
+        error: action.payload,
+        success: false,
+      }
+
+    case RESET_CREATE_REPORT_STREAMER:
+      return {
+        ...state,
+        success: null,
+      }
+    case CLEAR_NEW_REPORT_STREAMER_FAIL:
       return {
         ...state,
         error: null,

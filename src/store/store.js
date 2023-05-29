@@ -28,6 +28,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   reportPostReducer,
   loadCategoriesReportPostReducer,
+  reportStreamerReducer,
 } from './reducers/reportReducer'
 import {
   getAllStreamerFilterReducer,
@@ -35,6 +36,8 @@ import {
   getResultPerPageReducer,
   getFilteredProductsCountReducer,
 } from './reducers/searchReducer'
+
+import { getDataAllUrlStreamReducer } from './reducers/streamReducer'
 
 const initialState = {}
 
@@ -59,6 +62,8 @@ const reducers = combineReducers({
   getIntroduceStreamerById: getIntroduceStreamerReducer,
   followStreamer: addOrUnFollowStreamerReducer,
   getDataAllStreamerFilter: getAllStreamerFilterReducer,
+  newReport: reportStreamerReducer,
+  loadDataAllUrlStreamer: getDataAllUrlStreamReducer,
 })
 
 const middleware = [thunk]

@@ -6,6 +6,7 @@ import {
   CLEAR_SEARCH_STREAMER_SUCCESS,
 } from './types'
 import axiosClient from '../../apis'
+import { createLogHistory } from '../../apis'
 
 export const getDataAllStreamerFilter =
   (keyword = '', resultPerPage, page = 1) =>
@@ -13,15 +14,6 @@ export const getDataAllStreamerFilter =
     try {
       dispatch({ type: SEARCH_STREAMER_REQUEST })
       let url = `/stream/all-stream-by-filter?keyword=${keyword}&page=${page}`
-      // if (keyword && resultPerPage && page) {
-      //   url = `/stream/all-stream-by-filter?keyword=${keyword}&resultPerPage=${resultPerPage}&page=${page}`
-      // } else if (keyword && resultPerPage) {
-      //   url = `/stream/all-stream-by-filter?keyword=${keyword}&resultPerPage=${resultPerPage}`
-      // } else if (keyword && page) {
-      //   url = `/stream/all-stream-by-filter?keyword=${keyword}&page=${page}`
-      // } else {
-      //   url = `/stream/all-stream-by-filter?keyword=${keyword}`
-      // }
 
       if (resultPerPage) {
         url = `/stream/all-stream-by-filter?keyword=${keyword}&resultPerPage=${resultPerPage}&page=${page}`
@@ -30,6 +22,7 @@ export const getDataAllStreamerFilter =
 
       dispatch({ type: SEARCH_STREAMER_SUCCESS, payload: data })
     } catch (error) {
+      await createLogHistory(`${error?.response?.data?.message}`)
       dispatch({
         type: SEARCH_STREAMER_FAIL,
         payload: error.response.data.message,

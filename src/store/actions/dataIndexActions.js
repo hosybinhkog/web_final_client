@@ -5,6 +5,7 @@ import {
   LOAD_DATA_FAIL,
   CLEAR_LOAD_DATA_FAIL,
 } from './types'
+import { createLogHistory } from '../../apis'
 
 export const loadDataIndex = () => async (dispatch) => {
   try {
@@ -14,6 +15,7 @@ export const loadDataIndex = () => async (dispatch) => {
 
     dispatch({ type: LOAD_DATA_SUCCESS, payload: data })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: LOAD_DATA_FAIL,
       payload: error.response.data.message,

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import thumbnail from '../../assets/images/defaultThumbnail.jpg'
-import { Link, useParams } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 import Loading from '../../Components/Loading'
 import ButtonSubmit from '../../Components/Commom/ButtonSubmit'
 import {
@@ -16,7 +16,7 @@ const PublicIntroduceStream = () => {
   const { streammer, loading } = useSelector(
     (state) => state.getIntroduceStreamerById
   )
-
+  console.log(param.id)
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.users)
 
@@ -75,13 +75,16 @@ const PublicIntroduceStream = () => {
                 </span>
               </div>
             </div>
-            {/* <div className="flex justify-center  items-center">
-              <ButtonSubmit
-                titleButton={'Follow'}
-                cssButton={'button-create'}
-              />
-            </div> */}
-            <div>{user && <ItemStatusFollow streamerId={param.id} />}</div>
+            <div>
+              <div>{user && <ItemStatusFollow streamerId={param.id} />}</div>
+              <NavLink to={`/publicIntroduceStream/${param.id}/reportStreamer`}>
+                {' '}
+                <ButtonSubmit
+                  titleButton={'Report Streamer'}
+                  cssButton={'button-report'}
+                />
+              </NavLink>
+            </div>
           </div>
 
           <div

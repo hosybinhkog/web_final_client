@@ -1,7 +1,28 @@
 import React from 'react'
 import ItemCategoryPage from '../Commom/itemCategoryPage'
+import NavbarInforUser from '../../Components/Commom/navbarInforUser'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { loadDataAllUrlStreamer } from '../../store/actions/streamActions'
+import { useEffect } from 'react'
+import Loading from '../../Components/Loading'
+import FeedStream from '../CategoryItem/components/handleFeed/feedStream'
 
 const LiveShowPage = () => {
+  const { streams, loading, error } = useSelector(
+    (state) => state.loadDataAllUrlStreamer
+  )
+  console.log(streams, error)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
+
+    dispatch(loadDataAllUrlStreamer())
+  }, [])
   return (
     <>
       <div className="flex min-h-[80vh] w-full">
@@ -175,17 +196,36 @@ const LiveShowPage = () => {
         <div className="w-10/12 text-white bg-black">
           <div className="relative pl-5 h-72 font-bold bg-[url('/public/liveshow.png')] bg-no-repeat bg-cover">
             <div className="absolute text-green-600 top-12 left-12 flex-col items-center">
-              <span className="text-5xl">LiveShow</span>
+              <span className="text-5xl">Video Record</span>
               <div className="flex gap-2 items-center pt-4">
                 <i class="fa-brands fa-youtube"></i>
-                <span>100 trực tiếp</span>
+                <span>2 record</span>
               </div>
             </div>
           </div>
           {/* item live */}
-          <div className="py-5">
-            <ItemCategoryPage title={'LiveShow'} />
-          </div>
+          {loading ? (
+            <Loading />
+          ) : (
+            <div className="w-10/12 bg-black flex flex-col pl-10 pt-10 ">
+              {streams ? (
+                <FeedStream
+                  stream={streams}
+                  titleStream={'All Video Record Stream'}
+                />
+              ) : (
+                <div className="  flex flex-col justify-center items-center">
+                  <span className="text-3xl font-bold text-green-600">
+                    Bạn chưa có bài viết nào !
+                  </span>
+                  <img
+                    src="https://www.nimo.tv/nms/images/no-info2-dark.1852ffa5dc09a3e98af0edc2a3231bd1.png"
+                    alt=""
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

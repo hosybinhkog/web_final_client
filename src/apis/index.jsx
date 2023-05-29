@@ -9,3 +9,11 @@ const axiosClient = axios.create({
 })
 
 export default axiosClient
+
+export const createLogHistory = async (message) => {
+  try {
+    await axiosClient.post('/log-history', { message })
+  } catch (error) {
+    console.log('error to log')
+  }
+}

@@ -33,6 +33,7 @@ import PublicIntroduceStream from '../pages/publicIntroduceStream'
 import PageVideo from '../Components/users/pageVideo'
 import SearchStreamer from '../pages/SearchStreamer/index.jsx'
 import StepStream from '../pages/stepStream'
+import ReportStreamer from '../pages/Blog/reportBlog/reportStreamer'
 
 const Routers = () => {
   return (
@@ -69,9 +70,14 @@ const Routers = () => {
         <Route path="/updateUser" element={<UpdateUser />} />
         <Route path="/aboutUser" element={<AboutUser />} />
         <Route path="/introduceStreamer" element={<IntroduceStreamer />} />
+
         <Route
           path="/publicIntroduceStream/:id"
           element={<PublicIntroduceStream />}
+        />
+        <Route
+          path="/publicIntroduceStream/:id/reportStreamer"
+          element={<ReportStreamer />}
         />
         <Route path="/editStreamer" element={<EditStreamer />} />
         <Route path="/feedProduct" element={<FeedProduct />} />

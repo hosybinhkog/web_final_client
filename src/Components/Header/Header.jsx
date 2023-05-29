@@ -64,7 +64,7 @@ const Header = () => {
                   <li className="hover:text-white">Phát trực tiếp</li>
                 </Link>
                 <Link to="/LiveShowPage">
-                  <li className="hover:text-white">PBA Show</li>
+                  <li className="hover:text-white">Record</li>
                 </Link>
                 <Link to="/pageCategorisStream">
                   <li className="hover:text-white">

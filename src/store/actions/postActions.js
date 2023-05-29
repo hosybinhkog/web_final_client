@@ -39,6 +39,7 @@ import {
   CLEAR_LOAD_COMMENT_POST_ID_FAIL,
   CLEAR_DELETE_POST_ID,
 } from './types'
+import { createLogHistory } from '../../apis'
 
 export const createPost = (postData) => async (dispatch) => {
   try {
@@ -48,6 +49,7 @@ export const createPost = (postData) => async (dispatch) => {
 
     dispatch({ type: NEW_POST_SUCCESS, payload: data.newPost })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({ type: NEW_POST_FAIL, payload: error.response.data.message })
   }
 }
@@ -58,6 +60,7 @@ export const deletePostById = (id) => async (dispatch) => {
 
     dispatch({ type: DELETE_POST_ID_SUCCESS })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: DELETE_POST_ID_FAIL,
       payload: error.response.data.message,
@@ -73,6 +76,7 @@ export const loadPostUser = () => async (dispatch) => {
 
     dispatch({ type: LOAD_POST_USER_SUCCESS, payload: data.posts })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: LOAD_POST_USER_FAIL,
       payload: error.response.data.message,
@@ -88,6 +92,7 @@ export const loadDataAllPost = () => async (dispatch) => {
 
     dispatch({ type: GET_ALL_POST_SUCCESS, payload: data.posts })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: GET_ALL_POST_FAIL,
       payload: error.response.data.message,
@@ -111,6 +116,7 @@ export const getPostById = (id) => async (dispatch) => {
 
     dispatch({ type: LOAD_POST_ID_SUCCESS, payload: data.post })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: LOAD_POST_ID_FAIL,
       payload: error.response.data.message,
@@ -126,6 +132,7 @@ export const loadCategoriesPost = () => async (dispatch) => {
 
     dispatch({ type: GET_CATEGORY_POST_SUCCESS, payload: data.categories })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: GET_CATEGORY_POST_FAIL,
       payload: error.response.data.message,
@@ -141,6 +148,7 @@ export const getCategoryPostById = (id) => async (dispatch) => {
 
     dispatch({ type: LOAD_CATEGORY_POST_ID_SUCCESS, payload: data.category })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: LOAD_CATEGORY_POST_ID_FAIL,
       payload: error.response.data.message,
@@ -156,6 +164,7 @@ export const createComment = (id, text) => async (dispatch) => {
 
     dispatch({ type: NEW_COMMENT_SUCCESS, payload: data.newPost })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({ type: NEW_COMMENT_FAIL, payload: error.response.data.message })
   }
 }
@@ -174,6 +183,7 @@ export const getCommentPostById = (id) => async (dispatch) => {
 
     dispatch({ type: LOAD_COMMENT_POST_ID_SUCCESS, payload: data.commentPost })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: LOAD_COMMENT_POST_ID_FAIL,
       payload: error.response.data.message,
@@ -190,6 +200,7 @@ export const deleteCommentPostById = (id, commentId) => async (dispatch) => {
 
     dispatch({ type: DELETE_COMMENT_ID_SUCCESS })
   } catch (error) {
+    await createLogHistory(`${error?.response?.data?.message}`)
     dispatch({
       type: DELETE_COMMENT_ID_FAIL,
       payload: error.response.data.message,
